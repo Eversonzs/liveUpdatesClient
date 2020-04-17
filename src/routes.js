@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 // Layout Types
-import { DefaultLayout } from './layouts';
+import { DefaultLayout, LoginRegisterLayout } from './layouts';
 
 // Route Views
 import UserProfileLite from './views/UserProfileLite';
@@ -11,8 +11,8 @@ export default [
   {
     path: '/',
     exact: true,
-    layout: DefaultLayout,
-    component: () => <Redirect to='/user-profile' />
+    layout: LoginRegisterLayout,
+    component: () => <Redirect to='/login' />
   },
   {
     path: '/user-profile',
