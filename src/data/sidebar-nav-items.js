@@ -6,5 +6,11 @@ export default function() {
       to: '/user-profile',
       htmlAfter: ''
     },
+    {
+      title: 'Logout',
+      htmlBefore: '<i class="material-icons">exit_to_app</i>',
+      to: '/logout',
+      htmlAfter: ''
+    },
   ];
 }

@@ -8,6 +8,7 @@ import { DefaultLayout, LoginRegisterLayout } from './layouts';
 import UserProfileLite from './views/UserProfileLite';
 import Login from './views/Login';
 import Register from './views/Register';
+import Logout from './views/Logout';
 
 export default [
   {
@@ -30,6 +31,11 @@ export default [
     path: '/user-profile',
     layout: DefaultLayout,
     component: UserProfileLite
+  },
+  {
+    path: '/logout',
+    layout: DefaultLayout,
+    component: Logout
   },
   {
     path: '*',
