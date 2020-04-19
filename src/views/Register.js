@@ -38,21 +38,37 @@ class Register extends React.Component {
 
   userDataHandleChange = (event) => {
     let { userData } = this.state;
-    userData = {
-      ...userData,
-      [event.target.id]: event.target.value
-    };
+
+    if (event.target.id === 'photo') {
+      console.log('this is the photo.....');
+      console.log('eventTarger.....', event.target.files[0]);
+      const photo = event.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(photo);
+      reader.onloadend = () => {
+        console.log('reader.result--->>><', reader.result);        
+      };
+      userData = {
+        ...userData,
+        [event.target.id]: event.target.files,
+      };
+    } else {
+      userData = {
+        ...userData,
+        [event.target.id]: event.target.value,
+      };
+    }
+
+    console.log('userData--->>', userData);
 
     this.setState({ userData });
-  } 
+  }
 
   render() {
     const {
         userSession,
         buttonDisabled,
     } = this.state;
-
-    console.log('userSession--<<-', userSession);
 
     return (
       isEmpty(userSession) ?

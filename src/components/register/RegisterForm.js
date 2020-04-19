@@ -81,6 +81,27 @@ const RegisterForm = (props) => {
             autoComplete='birthday'
           />
         </FormGroup>
+        <FormGroup>
+          <label htmlFor='cellphone'>Cellphone</label>
+          <FormInput
+            type='text'
+            id='cellphone'
+            placeholder='Type your cellphone number (+5049899695)'
+            onChange={(e) => userDataHandleChange(e)}
+            autoComplete='cellphone'
+          />
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor='photo'>Select a photo</label>
+          <FormInput
+            type='file'
+            accept='image/png, image/jpeg, image/jpg'
+            id='photo'
+            placeholder='Select a photo...'
+            onChange={(e) => userDataHandleChange(e)}
+            autoComplete='photo'
+          />
+        </FormGroup>
         <Row className='col float-right'>
           <Button
           // onClick={() => login()}
