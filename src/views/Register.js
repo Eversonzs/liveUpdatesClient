@@ -25,8 +25,6 @@ class Register extends React.Component {
     this.setState({ userSession });
   }
 
-
-
   render() {
     const {
         userSession,
