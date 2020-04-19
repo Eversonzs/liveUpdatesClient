@@ -14,9 +14,9 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSubmitted: false,
+      email: '',
+      password: '',
     };
-    this.login = this.login.bind(this);
   }
 
   componentDidMount() {
@@ -26,23 +26,23 @@ class Login extends React.Component {
   }
 
   inputsHandleChange = (event) => {
-    console.log('event--->>>', event.target.id);
-    console.log('event--->>>', event.target.value);
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   } 
 
   login = async () => {
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
-    const { isSubmitted } = this.state;
+    const { email, password } = this.state;
+    console.log('documentByID--_>>>0', document.getElementById('email').value);
     console.log('email, password', email, password);
-    if (isSubmitted) {
-      await liveUpdatesLogin(email, password)
-      .then((result) => {
-        console.log('result---->>>', result);
-      }).catch((err) => {
-        console.log('err---->>>', err);
-      });
-    }
+    await liveUpdatesLogin(email, password)
+    .then((result) => {
+      console.log('result---->>>', result);
+    }).catch((err) => {
+      console.log('err---->>>', err);
+      return false;
+    });
+    return false;
   }
 
   render() {

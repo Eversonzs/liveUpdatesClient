@@ -17,7 +17,7 @@ const LoginForm = (props) => {
       <br></br>
       <strong className={`text-muted d-block mb-2 ${style.loginTitle}`}>Login into Live Updates</strong>
       <br></br>
-      <Form onSubmit={() => login('eversonzs@hotmail.com')}>
+      <Form>
         <FormGroup>
           <label htmlFor='email'>Email</label>
           <FormInput
@@ -38,7 +38,7 @@ const LoginForm = (props) => {
           />
         </FormGroup>
         <Row className='col float-right'>
-          <Button type='submit' className='ml-auto'>
+          <Button onClick={() => login()} className='ml-auto'>
             Login
           </Button>
         </Row>

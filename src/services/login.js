@@ -6,6 +6,9 @@ const liveUpdatesLogin = (email, password) =>
         { email, password }
     )
     .then(({ data }) => Promise.resolve(data))
-    .catch(error => Promise.reject(`Error while trying to login ${error}`))
+    .catch(error => {
+        console.log('error===>>>>>>', error.message);
+        return Promise.reject(`Error while trying to login ${error}`);
+    })
 
 export default liveUpdatesLogin;
