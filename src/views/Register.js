@@ -19,7 +19,7 @@ class Register extends React.Component {
     super(props);
     this.state = {
         isAuthenticated: false,
-        buttonDisabled: false,
+        buttonDisabled: true,
         userSession: {},
         userData: {
           username: '',
@@ -58,6 +58,26 @@ class Register extends React.Component {
       userData[userDataKey] = event.target.value;
       this.setState({ userData });
     }
+
+    const {
+      username,
+      email,
+      password,
+      name,
+      lastName,
+    } = userData;
+
+    let disabled = true;
+    if (
+      !isEmpty(username) &&
+      !isEmpty(email) &&
+      !isEmpty(password) &&
+      !isEmpty(name) &&
+      !isEmpty(lastName)
+    ) {
+      disabled = false;
+    }
+    this.setState({ buttonDisabled: disabled });
   };
 
   signUp = () => {
@@ -99,16 +119,16 @@ class Register extends React.Component {
 
     liveUpdatesRegister(userData)
       .then(response => {
-        if (response.code === 201 ) {
-          NotificationManager.success('Your user has been created!');
-          this.setState({ userRegistered: true });
+          if (response.code === 201 ) {
+            this.setState({ userRegistered: true });
+            NotificationManager.success('Your user has been created!');
         } else {
+          this.setState({ userRegistered: false });
           NotificationManager.error('Please try again.');
         }
       })
       .catch(error => {
-        console.log('error---->>>', error);
-        NotificationManager.error('Please try again.', 'Error');
+        NotificationManager.error(error.message, 'Error');
       })
 
   };
