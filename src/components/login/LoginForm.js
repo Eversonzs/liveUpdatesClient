@@ -11,7 +11,12 @@ import {
 import style from '../../views/modulesCss/Login.module.css';
 
 const LoginForm = (props) => {
-  const { login, inputsHandleChange } = props;
+  const {
+    login,
+    inputsHandleChange,
+    buttonDisabled,
+  } = props;
+  console.log('buttonDisabled---', buttonDisabled);
   return (
     <Col sm='12' md='12'>
       <br></br>
@@ -38,7 +43,11 @@ const LoginForm = (props) => {
           />
         </FormGroup>
         <Row className='col float-right'>
-          <Button onClick={() => login()} className='ml-auto'>
+          <Button
+          onClick={() => login()}
+          className='ml-auto'
+          disabled={buttonDisabled}
+          >
             Login
           </Button>
         </Row>

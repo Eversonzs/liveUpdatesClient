@@ -17,6 +17,7 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
+      buttonDisabled: false,
     };
   }
 
@@ -27,20 +28,22 @@ class Login extends React.Component {
   } 
 
   login = async () => {
+    this.setState({ buttonDisabled: true });
     const { email, password } = this.state;
     await liveUpdatesLogin(email, password)
     .then(result => {
-      console.log('result---->>>', result);
+      // TODO: save result for user session
+      console.log('result: ', result);
+      this.setState({ buttonDisabled: false });
       NotificationManager.success('Login successful');
     }).catch(error => {
-      console.log('error---->>>', error);
+      this.setState({ buttonDisabled: false });
       NotificationManager.error(error.message);
-      return false;
     });
-    return false;
   }
 
   render() {
+    const { buttonDisabled } = this.state;
     return (
       <Container fluid className='main-content-container'>
         <ListGroup flush className={styles.loginBox}>
@@ -49,6 +52,7 @@ class Login extends React.Component {
               <LoginForm
                 login={this.login}
                 inputsHandleChange={this.inputsHandleChange}
+                buttonDisabled={buttonDisabled}
               />
             </Row>
           </ListGroupItem>
