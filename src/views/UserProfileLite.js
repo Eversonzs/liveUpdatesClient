@@ -7,6 +7,7 @@ import { NotificationManager } from 'react-notifications';
 import PageTitle from '../components/common/PageTitle';
 import UserDetails from '../components/user-profile-lite/UserDetails';
 import UserAccountDetails from '../components/user-profile-lite/UserAccountDetails';
+import UserAccountDetailsRead from '../components/user-profile-lite/UserAccountDetailsRead';
 import getUserByUsername from '../services/getUserByUsername';
 
 class UserProfileLite extends React.Component {
@@ -27,23 +28,26 @@ class UserProfileLite extends React.Component {
       },
       isAuthenticated: true,
       usernameUrl,
+      sameUserLoggedIn: false,
     };
   }
 
   componentDidMount = () => {
-    const { usernameUrl } = this.state;
-    console.log('usernameUrl-----', usernameUrl);
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
+    const { usernameUrl } = this.state;
     if (isEmpty(userSession)) {
       this.setState({ userSession, isAuthenticated: false });
     } else {
-      getUserByUsername(userSession.username)
-        .then(res => {
-          this.setState({ userInfo: res.userData });
-        })
-        .catch(error => {
-          NotificationManager.error(error.message);
-        })
+      if (userSession.username === usernameUrl) {
+        this.setState({ sameUserLoggedIn: true });
+      }
+      getUserByUsername(usernameUrl)
+      .then(res => {
+        this.setState({ userInfo: res.userData });
+      })
+      .catch(error => {
+        NotificationManager.error(error.message);
+      })
       this.setState({ userSession });
     }
   };
@@ -91,8 +95,8 @@ class UserProfileLite extends React.Component {
   render() {
     const {
       isAuthenticated,
-      userSession,
-      userInfo
+      userInfo,
+      sameUserLoggedIn,
     } = this.state;
 
     return (
@@ -105,17 +109,26 @@ class UserProfileLite extends React.Component {
           <Row>
             <Col lg='4'>
               <UserDetails
-                userSession={userSession}
                 userInfo={userInfo}
               />
             </Col>
             <Col lg='8'>
-              <UserAccountDetails
-                userInfo={userInfo}
-                userDataHandleChange={this.userDataHandleChange}
-                buttonDisabled
-                updateUser
-              />
+              {
+                sameUserLoggedIn ? 
+                  ( 
+                    <UserAccountDetails
+                      userInfo={userInfo}
+                      userDataHandleChange={this.userDataHandleChange}
+                      buttonDisabled
+                      updateUser
+                    />
+                  ) :
+                  (
+                    <UserAccountDetailsRead
+                      userInfo={userInfo}
+                    />
+                  )
+              }
             </Col>
           </Row>
         </Container>
