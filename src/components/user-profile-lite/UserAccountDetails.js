@@ -10,121 +10,125 @@ import {
   Form,
   FormGroup,
   FormInput,
-  FormSelect,
-  FormTextarea,
-  Button
+  Button,
 } from 'shards-react';
 
-const UserAccountDetails = ({ title }) => (
-  <Card small className='mb-4'>
-    <CardHeader className='border-bottom'>
-      <h6 className='m-0'>{title}</h6>
-    </CardHeader>
-    <ListGroup flush>
-      <ListGroupItem className='p-3'>
-        <Row>
-          <Col>
-            <Form>
-              <Row form>
-                {/* First Name */}
-                <Col md='6' className='form-group'>
-                  <label htmlFor='feFirstName'>First Name</label>
+const UserAccountDetails = (props) => {
+  const {
+    userInfo,
+    userDataHandleChange,
+    buttonDisabled,
+    updateUser,
+  } = props;
+  console.log('userInfo-->', userInfo);
+
+  return (
+    <Card small className='mb-4'>
+      <CardHeader className='border-bottom'>
+        <h6 className='m-0'>User info</h6>
+      </CardHeader>
+      <ListGroup flush>
+        <ListGroupItem className='p-3'>
+          <Row>
+            <Col>
+              <Form>
+                <FormGroup>
+                  <label htmlFor='username'>Username</label>
                   <FormInput
-                    id='feFirstName'
-                    placeholder='First Name'
-                    value='Sierra'
-                    onChange={() => {}}
+                    type='text'
+                    id='username'
+                    placeholder='Choose an username'
+                    onChange={(e) => userDataHandleChange(e)}
+                    autoComplete='username'
                   />
-                </Col>
-                {/* Last Name */}
-                <Col md='6' className='form-group'>
-                  <label htmlFor='feLastName'>Last Name</label>
-                  <FormInput
-                    id='feLastName'
-                    placeholder='Last Name'
-                    value='Brooks'
-                    onChange={() => {}}
-                  />
-                </Col>
-              </Row>
-              <Row form>
-                {/* Email */}
-                <Col md='6' className='form-group'>
-                  <label htmlFor='feEmail'>Email</label>
+                </FormGroup>
+                <FormGroup>
+                  <label htmlFor='email'>Email</label>
                   <FormInput
                     type='email'
-                    id='feEmail'
+                    id='email'
                     placeholder='Email Address'
-                    value='sierra@example.com'
-                    onChange={() => {}}
+                    onChange={(e) => userDataHandleChange(e)}
                     autoComplete='email'
                   />
-                </Col>
-                {/* Password */}
-                <Col md='6' className='form-group'>
-                  <label htmlFor='fePassword'>Password</label>
+                </FormGroup>
+                <FormGroup>
+                  <label htmlFor='password'>Password</label>
                   <FormInput
                     type='password'
-                    id='fePassword'
+                    id='password'
                     placeholder='Password'
-                    value='EX@MPL#P@$$w0RD'
-                    onChange={() => {}}
-                    autoComplete='current-password'
+                    onChange={(e) => userDataHandleChange(e)}
                   />
-                </Col>
-              </Row>
-              <FormGroup>
-                <label htmlFor='feAddress'>Address</label>
-                <FormInput
-                  id='feAddress'
-                  placeholder='Address'
-                  value='1234 Main St.'
-                  onChange={() => {}}
-                />
-              </FormGroup>
-              <Row form>
-                {/* City */}
-                <Col md='6' className='form-group'>
-                  <label htmlFor='feCity'>City</label>
+                </FormGroup>
+                <FormGroup>
+                  <label htmlFor='name'>Name</label>
                   <FormInput
-                    id='feCity'
-                    placeholder='City'
-                    onChange={() => {}}
+                    type='text'
+                    id='name'
+                    placeholder='Type your name'
+                    onChange={(e) => userDataHandleChange(e)}
+                    autoComplete='name'
                   />
-                </Col>
-                {/* State */}
-                <Col md='4' className='form-group'>
-                  <label htmlFor='feInputState'>State</label>
-                  <FormSelect id='feInputState'>
-                    <option>Choose...</option>
-                    <option>...</option>
-                  </FormSelect>
-                </Col>
-                {/* Zip Code */}
-                <Col md='2' className='form-group'>
-                  <label htmlFor='feZipCode'>Zip</label>
+                </FormGroup>
+                <FormGroup>
+                  <label htmlFor='lastName'>Last Name</label>
                   <FormInput
-                    id='feZipCode'
-                    placeholder='Zip'
-                    onChange={() => {}}
+                    type='text'
+                    id='lastName'
+                    placeholder='Type your last name'
+                    onChange={(e) => userDataHandleChange(e)}
+                    autoComplete='lastName'
                   />
-                </Col>
-              </Row>
-              <Row form>
-                {/* Description */}
-                <Col md='12' className='form-group'>
-                  <label htmlFor='feDescription'>Description</label>
-                  <FormTextarea id='feDescription' rows='5' />
-                </Col>
-              </Row>
-              <Button theme='accent'>Update Account</Button>
-            </Form>
-          </Col>
-        </Row>
-      </ListGroupItem>
-    </ListGroup>
-  </Card>
-);
+                </FormGroup>
+                <FormGroup>
+                  <label htmlFor='birthday'>Birthday</label>
+                  <FormInput
+                    type='date'
+                    id='birthday'
+                    placeholder='Choose your birthday'
+                    onChange={(e) => userDataHandleChange(e)}
+                    autoComplete='birthday'
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <label htmlFor='cellphone'>Cellphone</label>
+                  <FormInput
+                    type='text'
+                    id='cellphone'
+                    placeholder='Type your cellphone number (+5049899695)'
+                    onChange={(e) => userDataHandleChange(e)}
+                    autoComplete='cellphone'
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <label htmlFor='photo'>Select a photo</label>
+                  <FormInput
+                    type='file'
+                    accept='image/png, image/jpeg, image/jpg'
+                    id='photo'
+                    placeholder='Select a photo...'
+                    onChange={(e) => userDataHandleChange(e)}
+                    autoComplete='photo'
+                  />
+                </FormGroup>
+                <Row className='col float-right'>
+                  <Button
+                    onClick={() => updateUser()}
+                    className='ml-auto'
+                    disabled={buttonDisabled}
+                  >
+                    Update
+                  </Button>
+                </Row>
+              </Form>
+            </Col>
+          </Row>
+        </ListGroupItem>
+      </ListGroup>
+    </Card>
+  );
+};
 
 UserAccountDetails.propTypes = {
   /**
