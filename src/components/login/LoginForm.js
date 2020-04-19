@@ -11,21 +11,20 @@ import {
 import style from '../../views/modulesCss/Login.module.css';
 
 const LoginForm = (props) => {
-  const { login } = props;
-  console.log('props.--->>><', props);
+  const { login, inputsHandleChange } = props;
   return (
     <Col sm='12' md='12'>
       <br></br>
       <strong className={`text-muted d-block mb-2 ${style.loginTitle}`}>Login into Live Updates</strong>
       <br></br>
-      <Form onSubmit={login('eversonzs@hotmail.co', 'password')}>
+      <Form onSubmit={() => login('eversonzs@hotmail.com')}>
         <FormGroup>
           <label htmlFor='email'>Email</label>
           <FormInput
             type='email'
             id='email'
             placeholder='Email Address'
-            onChange={() => {}}
+            onChange={(e) => inputsHandleChange(e)}
             autoComplete='email'
           />
         </FormGroup>
@@ -35,7 +34,7 @@ const LoginForm = (props) => {
             type='password'
             id='password'
             placeholder='Password'
-            onChange={() => {}}
+            onChange={(e) => inputsHandleChange(e)}
           />
         </FormGroup>
         <Row className='col float-right'>

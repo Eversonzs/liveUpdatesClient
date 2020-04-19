@@ -13,6 +13,9 @@ import liveUpdatesLogin from '../services/login';
 class Login extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isSubmitted: false,
+    };
     this.login = this.login.bind(this);
   }
 
@@ -22,13 +25,24 @@ class Login extends React.Component {
     // this.login('eversonzs@hotmail.com', 'password');
   }
 
-  login (email, password) {
-    liveUpdatesLogin(email, password)
-    .then((result) => {
-      console.log('result---->>>', result);
-    }).catch((err) => {
-      console.log('err---->>>', err);
-    });
+  inputsHandleChange = (event) => {
+    console.log('event--->>>', event.target.id);
+    console.log('event--->>>', event.target.value);
+  } 
+
+  login = async () => {
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const { isSubmitted } = this.state;
+    console.log('email, password', email, password);
+    if (isSubmitted) {
+      await liveUpdatesLogin(email, password)
+      .then((result) => {
+        console.log('result---->>>', result);
+      }).catch((err) => {
+        console.log('err---->>>', err);
+      });
+    }
   }
 
   render() {
@@ -39,6 +53,7 @@ class Login extends React.Component {
             <Row className={styles.rowCenter}>
               <LoginForm
                 login={this.login}
+                inputsHandleChange={this.inputsHandleChange}
               />
             </Row>
           </ListGroupItem>
