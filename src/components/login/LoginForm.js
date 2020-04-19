@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Row,
   Col,
@@ -6,25 +6,31 @@ import {
   FormInput,
   FormGroup,
   Button,
-} from "shards-react";
+} from 'shards-react';
+
+import style from '../../views/modulesCss/Login.module.css';
 
 const LoginForm = () => (
-  <Col sm="12" md="12">
-    <strong className="text-muted d-block mb-2">Live Updates</strong>
-    <strong className="text-muted d-block mb-2">Login</strong>
+  <Col sm='12' md='12'>
+    <br></br>
+    <strong className={`text-muted d-block mb-2 ${style.loginTitle}`}>Login into Live Updates</strong>
+    <br></br>
     <Form>
       <FormGroup>
-      <FormInput
-        type='email'
-        id='email'
-        placeholder='Email Address'
-        onChange={() => {}}
-        autoComplete='email'
-      />
+        <label htmlFor='email'>Email</label>
+        <FormInput
+          type='email'
+          id='email'
+          placeholder='Email Address'
+          onChange={() => {}}
+          autoComplete='email'
+        />
       </FormGroup>
       <FormGroup>
+        <label htmlFor='password'>Password</label>
         <FormInput
           type='password'
+          id='password'
           placeholder='Password'
           onChange={() => {}}
         />
