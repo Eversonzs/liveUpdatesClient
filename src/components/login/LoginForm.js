@@ -43,6 +43,7 @@ const LoginForm = (props) => {
           />
         </FormGroup>
         <Row className='col float-right'>
+          <p>New User? <a href='/register'>Create an account</a></p>
           <Button
             onClick={() => login()}
             className='ml-auto'

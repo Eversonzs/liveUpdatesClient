@@ -24,6 +24,9 @@ const RegisterForm = (props) => {
       <br></br>
       <Form>
         <FormGroup>
+          Already have an account? <a href='/login'>Login</a>
+        </FormGroup>
+        <FormGroup>
           <label htmlFor='username'>Username</label>
           <FormInput
             type='text'
