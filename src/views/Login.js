@@ -8,10 +8,26 @@ import {
 
 import styles from './modulesCss/Login.module.css';
 import LoginForm from '../components/login/LoginForm';
+import liveUpdatesLogin from '../services/login';
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.listRef = React.createRef();
+  }
 
+  componentDidMount() {
+    this.login();
+  }
 
+  login () {
+    liveUpdatesLogin()
+    .then((result) => {
+      console.log('result---->>>', result);
+    }).catch((err) => {
+      console.log('err---->>>', err);
+    });
+  }
 
   render() {
     return (
