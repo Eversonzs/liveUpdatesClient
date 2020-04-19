@@ -19,26 +19,19 @@ class Login extends React.Component {
     };
   }
 
-  componentDidMount() {
-    // TODO: delete did mount if is not necessary
-    // test for login function.
-    // this.login('eversonzs@hotmail.com', 'password');
-  }
-
   inputsHandleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.id]: event.target.value
     });
   } 
 
   login = async () => {
     const { email, password } = this.state;
-    console.log('documentByID--_>>>0', document.getElementById('email').value);
     console.log('email, password', email, password);
     await liveUpdatesLogin(email, password)
-    .then((result) => {
+    .then(result => {
       console.log('result---->>>', result);
-    }).catch((err) => {
+    }).catch(err => {
       console.log('err---->>>', err);
       return false;
     });
