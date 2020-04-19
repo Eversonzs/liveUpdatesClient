@@ -9,8 +9,8 @@ import {
   CardBody,
   Badge,
 } from 'shards-react';
-import { isEmpty } from 'lodash';
 
+import styles from './modulesCss/NewsBlog.module.css'
 import PageTitle from '../components/common/PageTitle';
 import getAllPosts from '../services/getAllPosts';
 
@@ -41,7 +41,7 @@ class BlogPosts extends React.Component {
       allPosts,
     } = this.state;
 
-    const defaultPostImage = '../image/default-news-post.png';
+    const defaultPostImage = require('../images/default-news-post.png');
 
     return (
       <Container fluid className='main-content-container px-4'>
@@ -57,7 +57,7 @@ class BlogPosts extends React.Component {
               <Card small className='card-post card-post--1'>
                 <div
                   className='card-post__image'
-                  style={{ backgroundImage: `url(${isEmpty(post.image) ? defaultPostImage : post.image})` }}
+                  style={{ backgroundImage: `url(${post.image || defaultPostImage})` }}
                 >
                   <Badge
                     pill
@@ -71,7 +71,6 @@ class BlogPosts extends React.Component {
                       className="card-post__author-avatar card-post__author-avatar--small"
                       style={{ backgroundImage: `url(${post.user_photo})` }}
                     >
-                      Written by @{post.username}
                     </a>
                   </div>
                 </div>
@@ -83,7 +82,13 @@ class BlogPosts extends React.Component {
                   </h5>
                   <p className='card-text d-inline-block mb-3'>{post.description}</p>
                   <br></br>
-                  <span className='text-muted'>{new Date(post.timestamp).toString('YYYY-MM-DD - hh:mm:ss')}</span>
+                  <br></br>
+                  <div className={styles.authorDiv}>
+                    <span className='text-muted'>
+                      Written by @{post.username} <br></br>
+                      {new Date(post.timestamp).toUTCString()}
+                    </span>
+                  </div>
                 </CardBody>
               </Card>
             </Col>
