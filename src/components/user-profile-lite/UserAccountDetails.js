@@ -20,7 +20,6 @@ const UserAccountDetails = (props) => {
     buttonDisabled,
     updateUser,
   } = props;
-  console.log('userInfo-->', userInfo);
 
   return (
     <Card small className='mb-4'>
@@ -37,6 +36,7 @@ const UserAccountDetails = (props) => {
                   <FormInput
                     type='text'
                     id='username'
+                    value={userInfo.username}
                     placeholder='Choose an username'
                     onChange={(e) => userDataHandleChange(e)}
                     autoComplete='username'

@@ -14,7 +14,7 @@ class UserProfileLite extends React.Component {
     super(props);
     this.state = {
       userSession: {},
-      userInfo: {},
+      userInfo: undefined,
       isAuthenticated: true,
     };
   }
@@ -33,10 +33,55 @@ class UserProfileLite extends React.Component {
         })
       this.setState({ userSession });
     }
-  }
+  };
+
+  userDataHandleChange = async (event) => {
+    let { userData } = this.state;
+
+    const userDataKey = event.target.id;
+
+    if (userDataKey === 'photo') {
+      const photo = event.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(photo);
+      reader.onloadend = () => {
+        const imageB64 = reader.result;
+        userData[userDataKey] = imageB64;
+        this.setState({ userData });
+      };
+    } else {
+      userData[userDataKey] = event.target.value;
+      this.setState({ userData });
+    }
+
+    const {
+      username,
+      email,
+      password,
+      name,
+      lastName,
+    } = userData;
+
+    let disabled = true;
+    if (
+      !isEmpty(username) &&
+      !isEmpty(email) &&
+      !isEmpty(password) &&
+      !isEmpty(name) &&
+      !isEmpty(lastName)
+    ) {
+      disabled = false;
+    }
+    this.setState({ buttonDisabled: disabled });
+  };
 
   render() {
-    const { isAuthenticated, userSession } = this.state;
+    const {
+      isAuthenticated,
+      userSession,
+      userInfo
+    } = this.state;
+
     return (
       isAuthenticated ?
       (
@@ -52,8 +97,8 @@ class UserProfileLite extends React.Component {
             </Col>
             <Col lg='8'>
               <UserAccountDetails
-                userInfo
-                userDataHandleChange
+                userInfo={userInfo}
+                userDataHandleChange={this.userDataHandleChange}
                 buttonDisabled
                 updateUser
               />
