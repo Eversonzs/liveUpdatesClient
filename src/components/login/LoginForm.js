@@ -12,7 +12,7 @@ import {
 } from "shards-react";
 
 const LoginForm = () => (
-  <Col sm="12" md="6">
+  <Col sm="12" md="12">
     <strong className="text-muted d-block mb-2">Login</strong>
     <Form>
       <FormGroup>

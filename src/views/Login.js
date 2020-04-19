@@ -11,8 +11,8 @@ import LoginForm from '../components/login/LoginForm';
 
 
 const Login = () => (
-  <Container fluid className='main-content-container px-4'>
-    <ListGroup flush>
+  <Container fluid className='main-content-container'>
+    <ListGroup flush className={`${styles.loginBox}`}>
       <ListGroupItem className='p-3'>
         <Row className={styles.rowCenter}>
           <LoginForm />
