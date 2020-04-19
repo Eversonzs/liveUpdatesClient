@@ -4,7 +4,6 @@ import {
   Col,
   Form,
   FormInput,
-  FormSelect,
   FormGroup,
   Button,
 } from "shards-react";
@@ -30,8 +29,8 @@ const LoginForm = () => (
           onChange={() => {}}
         />
       </FormGroup>
-      <Row className='col float-right '>
-        <Button>
+      <Row className='col float-right'>
+        <Button className='ml-auto'>
           Login
         </Button>
       </Row>
