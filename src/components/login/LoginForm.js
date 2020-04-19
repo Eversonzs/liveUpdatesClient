@@ -6,9 +6,7 @@ import {
   FormInput,
   FormSelect,
   FormGroup,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText
+  Button,
 } from "shards-react";
 
 const LoginForm = () => (
@@ -17,38 +15,25 @@ const LoginForm = () => (
     <strong className="text-muted d-block mb-2">Login</strong>
     <Form>
       <FormGroup>
-        <InputGroup className="mb-3">
-          <InputGroupAddon type="prepend">
-            <InputGroupText>@</InputGroupText>
-          </InputGroupAddon>
-          <FormInput placeholder="Username" />
-        </InputGroup>
+      <FormInput
+        type='email'
+        id='email'
+        placeholder='Email Address'
+        onChange={() => {}}
+        autoComplete='email'
+      />
       </FormGroup>
       <FormGroup>
         <FormInput
-          type="password"
-          placeholder="Password"
-          value="myCoolPassword"
+          type='password'
+          placeholder='Password'
           onChange={() => {}}
         />
       </FormGroup>
-      <FormGroup>
-        <FormInput
-          placeholder="1234 Main St"
-          value="7898 Kensington Junction, New York, USA"
-          onChange={() => {}}
-        />
-      </FormGroup>
-      <Row form>
-        <Col md="7">
-          <FormInput value="New York" onChange={() => {}} />
-        </Col>
-        <Col md="5" className="form-group">
-          <FormSelect>
-            <option>Choose ...</option>
-            <option>...</option>
-          </FormSelect>
-        </Col>
+      <Row className='col float-right '>
+        <Button>
+          Login
+        </Button>
       </Row>
     </Form>
   </Col>
