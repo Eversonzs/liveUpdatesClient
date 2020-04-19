@@ -42,8 +42,9 @@ class Login extends React.Component {
     liveUpdatesLogin(email, password)
     .then(result => {
       if (result.code === 200) {
-        sessionStorage.setItem('userSession', JSON.stringify(result.user));
-        this.setState({ buttonDisabled: false, loginSuccess: true });
+        const userSession = result.user;
+        sessionStorage.setItem('userSession', JSON.stringify(userSession));
+        this.setState({ buttonDisabled: false, loginSuccess: true, userSession });
         NotificationManager.success('Login successful');
       } else {
         NotificationManager.error('Please try again');
@@ -63,9 +64,9 @@ class Login extends React.Component {
 
     return (
       !isEmpty(userSession) ?
-        <Redirect to='/user-profile' /> :
+        <Redirect to={`/user-profile/${userSession.username}`} /> :
       loginSuccess ? 
-        <Redirect to='/user-profile' /> :
+        <Redirect to={`/user-profile/${userSession.username}`} /> :
         (
           <Container fluid className='main-content-container'>
             <ListGroup flush className={styles.loginBox}>

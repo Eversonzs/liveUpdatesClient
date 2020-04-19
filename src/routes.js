@@ -29,7 +29,7 @@ export default [
     component: Register
   },
   {
-    path: '/user-profile',
+    path: '/user-profile/:username',
     layout: DefaultLayout,
     component: UserProfileLite
   },

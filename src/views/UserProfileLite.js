@@ -12,6 +12,7 @@ import getUserByUsername from '../services/getUserByUsername';
 class UserProfileLite extends React.Component {
   constructor(props) {
     super(props);
+    const usernameUrl = this.props.match.params.username;
     this.state = {
       userSession: {},
       userInfo: {
@@ -25,10 +26,13 @@ class UserProfileLite extends React.Component {
           photo: '',
       },
       isAuthenticated: true,
+      usernameUrl,
     };
   }
 
   componentDidMount = () => {
+    const { usernameUrl } = this.state;
+    console.log('usernameUrl-----', usernameUrl);
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
     if (isEmpty(userSession)) {
       this.setState({ userSession, isAuthenticated: false });
