@@ -8,19 +8,17 @@ import {
   Button,
 } from 'shards-react';
 
-import style from '../../views/modulesCss/Login.module.css';
+import style from '../../views/modulesCss/Register.module.css';
 
-const LoginForm = (props) => {
+const RegisterForm = (props) => {
   const {
-    login,
-    inputsHandleChange,
     buttonDisabled,
   } = props;
 
   return (
     <Col sm='12' md='12'>
       <br></br>
-      <strong className={`text-muted d-block mb-2 ${style.loginTitle}`}>Login into Live Updates</strong>
+      <strong className={`text-muted d-block mb-2 ${style.registerTitle}`}>Create an user for Live Updates</strong>
       <br></br>
       <Form>
         <FormGroup>
@@ -29,7 +27,7 @@ const LoginForm = (props) => {
             type='email'
             id='email'
             placeholder='Email Address'
-            onChange={(e) => inputsHandleChange(e)}
+            // onChange={(e) => inputsHandleChange(e)}
             autoComplete='email'
           />
         </FormGroup>
@@ -39,16 +37,16 @@ const LoginForm = (props) => {
             type='password'
             id='password'
             placeholder='Password'
-            onChange={(e) => inputsHandleChange(e)}
+            // onChange={(e) => inputsHandleChange(e)}
           />
         </FormGroup>
         <Row className='col float-right'>
           <Button
-          onClick={() => login()}
+          // onClick={() => login()}
           className='ml-auto'
           disabled={buttonDisabled}
           >
-            Login
+            Sing up
           </Button>
         </Row>
       </Form>
@@ -56,4 +54,4 @@ const LoginForm = (props) => {
   )
 };
 
-export default LoginForm;
+export default RegisterForm;
