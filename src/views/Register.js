@@ -12,6 +12,7 @@ import { NotificationManager } from 'react-notifications';
 
 import styles from './modulesCss/Register.module.css';
 import RegisterForm from '../components/register/RegisterForm';
+import liveUpdatesRegister from '../services/register';
 
 class Register extends React.Component {
   constructor(props) {
@@ -94,6 +95,19 @@ class Register extends React.Component {
       NotificationManager.error('Last Name is required');
       return false;
     }
+
+    liveUpdatesRegister(userData)
+      .then(response => {
+        if (response.code === 201 ) {
+          NotificationManager.success('Your user has been created!');
+        } else {
+          NotificationManager.error('Please try again.');
+        }
+      })
+      .catch(error => {
+        console.log('error---->>>', error);
+        NotificationManager.error('Please try again.', 'Error');
+      })
 
   };
 
