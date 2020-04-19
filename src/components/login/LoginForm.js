@@ -13,6 +13,7 @@ import {
 
 const LoginForm = () => (
   <Col sm="12" md="12">
+    <strong className="text-muted d-block mb-2">Live Updates</strong>
     <strong className="text-muted d-block mb-2">Login</strong>
     <Form>
       <FormGroup>

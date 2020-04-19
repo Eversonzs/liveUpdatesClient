@@ -1,11 +1,17 @@
-.rowCenter {
-    text-align: center;
-    margin-left: 15px !important;
-    margin-right: 15px !important;
+.mainContainer {
+    background-image: url('../../images/login-register-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .loginBox {
     margin-top: 10%;
     margin-left: 15%;
     margin-right: 15%;
+}
+
+.rowCenter {
+    text-align: center;
+    margin-left: 15px !important;
+    margin-right: 15px !important;
 }

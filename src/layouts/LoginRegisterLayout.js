@@ -5,11 +5,13 @@ import { Container, Row, Col } from 'shards-react';
 import MainNavbar from '../components/layout/MainNavbar/MainNavbar';
 import MainFooter from '../components/layout/MainFooter';
 
+import styles from '../views/modulesCss/Login.module.css'
+
 const LoginRegisterLayout = ({ children, noNavbar, noFooter }) => (
   <Container fluid>
     <Row>
       <Col
-        className='main-content p-0'
+        className={`main-content p-0 ${styles.mainContainer}`}
         sm='12'
         tag='main'
       >
