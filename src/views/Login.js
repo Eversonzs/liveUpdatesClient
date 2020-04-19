@@ -29,14 +29,18 @@ class Login extends React.Component {
     });
   } 
 
-  login = async () => {
+  login = () => {
     this.setState({ buttonDisabled: true });
     const { email, password } = this.state;
-    await liveUpdatesLogin(email, password)
+    liveUpdatesLogin(email, password)
     .then(result => {
-      sessionStorage.setItem('userSession', JSON.stringify(result.user));
-      this.setState({ buttonDisabled: false, loginSuccess: true });
-      NotificationManager.success('Login successful');
+      if (result.code === 200) {
+        sessionStorage.setItem('userSession', JSON.stringify(result.user));
+        this.setState({ buttonDisabled: false, loginSuccess: true });
+        NotificationManager.success('Login successful');
+      } else {
+        NotificationManager.error('Please try again');
+      }
     }).catch(error => {
       this.setState({ buttonDisabled: false });
       NotificationManager.error(error.message);
