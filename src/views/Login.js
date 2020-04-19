@@ -34,8 +34,7 @@ class Login extends React.Component {
     const { email, password } = this.state;
     await liveUpdatesLogin(email, password)
     .then(result => {
-      // TODO: save result for user session
-      console.log('result: ', result);
+      sessionStorage.setItem('userSession', JSON.stringify(result.user));
       this.setState({ buttonDisabled: false, loginSuccess: true });
       NotificationManager.success('Login successful');
     }).catch(error => {
