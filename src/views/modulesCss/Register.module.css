@@ -1,3 +1,14 @@
 .registerTitle {
     text-align: center;
 }
+
+.registerBox {
+    margin-top: 10%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.rowCenter {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+}

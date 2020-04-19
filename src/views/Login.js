@@ -4,7 +4,7 @@ import {
   Row,
   ListGroup,
   ListGroupItem,
-} from 'shards-react'
+} from 'shards-react';
 import { Redirect } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import { isEmpty } from 'lodash';
