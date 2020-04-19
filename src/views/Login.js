@@ -13,15 +13,17 @@ import liveUpdatesLogin from '../services/login';
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.listRef = React.createRef();
+    this.login = this.login.bind(this);
   }
 
   componentDidMount() {
-    this.login();
+    // TODO: delete did mount if is not necessary
+    // test for login function.
+    // this.login('eversonzs@hotmail.com', 'password');
   }
 
-  login () {
-    liveUpdatesLogin()
+  login (email, password) {
+    liveUpdatesLogin(email, password)
     .then((result) => {
       console.log('result---->>>', result);
     }).catch((err) => {
@@ -36,7 +38,7 @@ class Login extends React.Component {
           <ListGroupItem>
             <Row className={styles.rowCenter}>
               <LoginForm
-
+                login={this.login}
               />
             </Row>
           </ListGroupItem>
