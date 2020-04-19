@@ -42,8 +42,8 @@ const LoginForm = (props) => {
             onChange={(e) => inputsHandleChange(e)}
           />
         </FormGroup>
+        <p>New User? <a href='/register'>Create an account</a></p>
         <Row className='col float-right'>
-          <p>New User? <a href='/register'>Create an account</a></p>
           <Button
             onClick={() => login()}
             className='ml-auto'

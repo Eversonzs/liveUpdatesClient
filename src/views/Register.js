@@ -92,6 +92,8 @@ class Register extends React.Component {
       }
     } = this.state;
 
+    this.setState({ buttonDisabled: true });
+
     if (isEmpty(username)) {
       NotificationManager.error('Username is required');
       return false;
