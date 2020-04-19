@@ -2,10 +2,12 @@ import React from 'react';
 import { Container, Row, Col } from 'shards-react';
 import { Redirect } from 'react-router-dom';
 import { isEmpty } from 'lodash';
+import { NotificationManager } from 'react-notifications';
 
 import PageTitle from '../components/common/PageTitle';
 import UserDetails from '../components/user-profile-lite/UserDetails';
 import UserAccountDetails from '../components/user-profile-lite/UserAccountDetails';
+import getUserByUsername from '../services/getUserByUsername';
 
 class UserProfileLite extends React.Component {
   constructor(props) {
@@ -22,7 +24,13 @@ class UserProfileLite extends React.Component {
     if (isEmpty(userSession)) {
       this.setState({ userSession, isAuthenticated: false });
     } else {
-      
+      getUserByUsername(userSession.username)
+        .then(res => {
+          this.setState({ userInfo: res.userData });
+        })
+        .catch(error => {
+          NotificationManager.error(error.message);
+        })
       this.setState({ userSession });
     }
   }
