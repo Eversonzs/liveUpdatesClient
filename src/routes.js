@@ -6,6 +6,7 @@ import { DefaultLayout, LoginRegisterLayout } from './layouts';
 
 // Route Views
 import UserProfileLite from './views/UserProfileLite';
+import Login from './views/Login';
 
 export default [
   {
@@ -13,6 +14,11 @@ export default [
     exact: true,
     layout: LoginRegisterLayout,
     component: () => <Redirect to='/login' />
+  },
+  {
+    path: '/login',
+    layout: LoginRegisterLayout,
+    component: Login
   },
   {
     path: '/user-profile',
