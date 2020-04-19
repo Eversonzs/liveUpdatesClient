@@ -10,8 +10,18 @@ class UserProfileLite extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuthenticated: false,
+      userSession: {},
+      isAuthenticated: true,
     };
+  }
+
+  componentDidMount = () => {
+    const userSession = JSON.parse(sessionStorage.getItem('userSession'));
+    if (userSession) {
+      this.setState({ userSession, isAuthenticated: true });
+    } else {
+      this.setState({ userSession, isAuthenticated: false });
+    }
   }
 
   render() {

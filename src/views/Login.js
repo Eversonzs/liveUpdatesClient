@@ -7,6 +7,7 @@ import {
 } from 'shards-react'
 import { Redirect } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
+import { isEmpty } from 'lodash';
 
 import styles from './modulesCss/Login.module.css';
 import LoginForm from '../components/login/LoginForm';
@@ -27,7 +28,6 @@ class Login extends React.Component {
   componentDidMount = () => {
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
     this.setState({ userSession });
-    console.log('userSession.-->', userSession);
   }
 
   inputsHandleChange = (event) => {
@@ -62,7 +62,7 @@ class Login extends React.Component {
     } = this.state;
 
     return (
-      userSession.user_id ?
+      !isEmpty(userSession) ?
         <Redirect to='/user-profile' /> :
       loginSuccess ? 
         <Redirect to='/user-profile' /> :
