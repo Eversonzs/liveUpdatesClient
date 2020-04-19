@@ -9,7 +9,7 @@ import MainSidebar from '../components/layout/MainSidebar/MainSidebar';
 import MainFooter from '../components/layout/MainFooter';
 
 const DefaultLayout = ({ children, noNavbar, noFooter }) => (
-  <div className="app-container">
+  <div className='app-container'>
     <Container fluid>
       <Row>
         <MainSidebar />

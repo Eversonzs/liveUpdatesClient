@@ -17,6 +17,17 @@ class Register extends React.Component {
     this.state = {
         isAuthenticated: false,
         buttonDisabled: true,
+        userSession: {},
+        userData: {
+          username: '',
+          email: '',
+          password: '',
+          name: '',
+          lastName: '',
+          birthday: '',
+          cellphone: '',
+          photo: '',
+        }
     };
   }
 
@@ -24,6 +35,15 @@ class Register extends React.Component {
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
     this.setState({ userSession });
   }
+
+  userDataHandleChange = (event) => {
+    let { userData } = this.state;
+    const key = userData[event.target.id];
+    console.log('key...>>', key);
+    this.setState({
+      [key]: event.target.value
+    });
+  } 
 
   render() {
     const {
@@ -43,6 +63,7 @@ class Register extends React.Component {
                   <Row className={styles.rowCenter}>
                     <RegisterForm
                       buttonDisabled={buttonDisabled}
+                      userDataHandleChange={this.userDataHandleChange}
                     />
                   </Row>
                 </ListGroupItem>

@@ -13,6 +13,7 @@ import style from '../../views/modulesCss/Register.module.css';
 const RegisterForm = (props) => {
   const {
     buttonDisabled,
+    userDataHandleChange,
   } = props;
 
   return (
@@ -22,12 +23,22 @@ const RegisterForm = (props) => {
       <br></br>
       <Form>
         <FormGroup>
+          <label htmlFor='username'>Username</label>
+          <FormInput
+            type='text'
+            id='username'
+            placeholder='Choose an username'
+            onChange={(e) => userDataHandleChange(e)}
+            autoComplete='username'
+          />
+        </FormGroup>
+        <FormGroup>
           <label htmlFor='email'>Email</label>
           <FormInput
             type='email'
             id='email'
             placeholder='Email Address'
-            // onChange={(e) => inputsHandleChange(e)}
+            onChange={(e) => userDataHandleChange(e)}
             autoComplete='email'
           />
         </FormGroup>
@@ -37,7 +48,37 @@ const RegisterForm = (props) => {
             type='password'
             id='password'
             placeholder='Password'
-            // onChange={(e) => inputsHandleChange(e)}
+            onChange={(e) => userDataHandleChange(e)}
+          />
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor='name'>Name</label>
+          <FormInput
+            type='text'
+            id='name'
+            placeholder='Type your name'
+            onChange={(e) => userDataHandleChange(e)}
+            autoComplete='name'
+          />
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor='lastName'>Last Name</label>
+          <FormInput
+            type='text'
+            id='lastName'
+            placeholder='Type your last name'
+            onChange={(e) => userDataHandleChange(e)}
+            autoComplete='lastName'
+          />
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor='birthday'>Birthday</label>
+          <FormInput
+            type='date'
+            id='birthday'
+            placeholder='Choose your birthday'
+            onChange={(e) => userDataHandleChange(e)}
+            autoComplete='birthday'
           />
         </FormGroup>
         <Row className='col float-right'>

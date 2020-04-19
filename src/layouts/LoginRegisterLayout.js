@@ -10,7 +10,7 @@ import MainFooter from '../components/layout/MainFooter';
 import styles from '../views/modulesCss/Login.module.css'
 
 const LoginRegisterLayout = ({ children, noNavbar, noFooter }) => (
-  <div className="app-container">
+  <div className='app-container'>
     <Container fluid>
       <Row>
         <Col
