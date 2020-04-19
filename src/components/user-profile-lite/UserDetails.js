@@ -7,7 +7,7 @@ import {
 } from 'shards-react';
 
 const UserDetails = (props) => {
-  const { userSession, userDetails } = props;
+  const { userSession, userDetails, userInfo } = props;
   return (
     <Card small className='mb-4 pt-3'>
       <CardHeader className='border-bottom text-center'>
@@ -15,12 +15,12 @@ const UserDetails = (props) => {
           <img
             className='rounded-circle'
             src={isEmpty(userSession.photo) ? userDetails.avatar : userSession.photo}
-            alt={userDetails.username}
+            alt={userSession.username}
             width='110'
           />
         </div>
-        <h4 className='mb-0'>{userDetails.username}</h4>
-        <span className='text-muted d-block mb-2'>{userDetails.name} {userDetails.lastName}</span>
+        <h4 className='mb-0'>@{userSession.username}</h4>
+        <span className='text-muted d-block mb-2'>{userInfo.name || ''} {userInfo.lastname || ''}</span>
       </CardHeader>
     </Card>
   );

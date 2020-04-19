@@ -102,6 +102,7 @@ class UserProfileLite extends React.Component {
             <Col lg='4'>
               <UserDetails
                 userSession={userSession}
+                userInfo={userInfo}
               />
             </Col>
             <Col lg='8'>
