@@ -5,21 +5,29 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'shards-react'
-import styles from './modulesCss/Login.module.css';
 
+import styles from './modulesCss/Login.module.css';
 import LoginForm from '../components/login/LoginForm';
 
+class Login extends React.Component {
 
-const Login = () => (
-  <Container fluid className='main-content-container'>
-    <ListGroup flush className={styles.loginBox}>
-      <ListGroupItem>
-        <Row className={styles.rowCenter}>
-          <LoginForm />
-        </Row>
-      </ListGroupItem>
-    </ListGroup>
-  </Container>
-);
+
+
+  render() {
+    return (
+      <Container fluid className='main-content-container'>
+        <ListGroup flush className={styles.loginBox}>
+          <ListGroupItem>
+            <Row className={styles.rowCenter}>
+              <LoginForm
+
+              />
+            </Row>
+          </ListGroupItem>
+        </ListGroup>
+      </Container>
+    );
+  }
+};
 
 export default Login;
