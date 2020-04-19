@@ -8,7 +8,7 @@ import {
   Button,
 } from 'shards-react';
 
-import style from '../../views/modulesCss/Login.module.css';
+import style from './LoginForm.module.css';
 
 const LoginForm = (props) => {
   const {

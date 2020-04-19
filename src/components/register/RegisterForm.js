@@ -8,7 +8,7 @@ import {
   Button,
 } from 'shards-react';
 
-import style from '../../views/modulesCss/Register.module.css';
+import style from './RegisterForm.module.css';
 
 const RegisterForm = (props) => {
   const {

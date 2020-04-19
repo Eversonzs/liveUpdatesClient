@@ -32,6 +32,7 @@ export default [
     component: UserProfileLite
   },
   {
+    path: '*',
     exact: true,
     layout: LoginRegisterLayout,
     component: () => <Redirect to='/login' />
