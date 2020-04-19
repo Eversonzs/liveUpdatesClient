@@ -14,7 +14,16 @@ class UserProfileLite extends React.Component {
     super(props);
     this.state = {
       userSession: {},
-      userInfo: undefined,
+      userInfo: {
+        username: '',
+          email: '',
+          password: '',
+          name: '',
+          lastName: '',
+          birthday: '',
+          cellphone: '',
+          photo: '',
+      },
       isAuthenticated: true,
     };
   }
@@ -36,22 +45,22 @@ class UserProfileLite extends React.Component {
   };
 
   userDataHandleChange = async (event) => {
-    let { userData } = this.state;
+    let { userInfo } = this.state;
 
-    const userDataKey = event.target.id;
+    const userInfoKey = event.target.id;
 
-    if (userDataKey === 'photo') {
+    if (userInfoKey === 'photo') {
       const photo = event.target.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(photo);
       reader.onloadend = () => {
         const imageB64 = reader.result;
-        userData[userDataKey] = imageB64;
-        this.setState({ userData });
+        userInfo[userInfoKey] = imageB64;
+        this.setState({ userInfo });
       };
     } else {
-      userData[userDataKey] = event.target.value;
-      this.setState({ userData });
+      userInfo[userInfoKey] = event.target.value;
+      this.setState({ userInfo });
     }
 
     const {
@@ -60,7 +69,7 @@ class UserProfileLite extends React.Component {
       password,
       name,
       lastName,
-    } = userData;
+    } = userInfo;
 
     let disabled = true;
     if (

@@ -36,7 +36,7 @@ const UserAccountDetails = (props) => {
                   <FormInput
                     type='text'
                     id='username'
-                    value={userInfo.username}
+                    value={userInfo.username || ''}
                     placeholder='Choose an username'
                     onChange={(e) => userDataHandleChange(e)}
                     autoComplete='username'
@@ -47,6 +47,7 @@ const UserAccountDetails = (props) => {
                   <FormInput
                     type='email'
                     id='email'
+                    value={userInfo.email || ''}
                     placeholder='Email Address'
                     onChange={(e) => userDataHandleChange(e)}
                     autoComplete='email'
@@ -66,6 +67,7 @@ const UserAccountDetails = (props) => {
                   <FormInput
                     type='text'
                     id='name'
+                    value={userInfo.name || ''}
                     placeholder='Type your name'
                     onChange={(e) => userDataHandleChange(e)}
                     autoComplete='name'
@@ -76,6 +78,7 @@ const UserAccountDetails = (props) => {
                   <FormInput
                     type='text'
                     id='lastName'
+                    value={userInfo.lastname || ''}
                     placeholder='Type your last name'
                     onChange={(e) => userDataHandleChange(e)}
                     autoComplete='lastName'
@@ -96,6 +99,7 @@ const UserAccountDetails = (props) => {
                   <FormInput
                     type='text'
                     id='cellphone'
+                    value={userInfo.cellphone || ''}
                     placeholder='Type your cellphone number (+5049899695)'
                     onChange={(e) => userDataHandleChange(e)}
                     autoComplete='cellphone'
