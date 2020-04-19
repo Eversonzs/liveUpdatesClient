@@ -7,6 +7,7 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'shards-react';
+import Isemail from 'isemail';
 
 import styles from './modulesCss/Register.module.css';
 import RegisterForm from '../components/register/RegisterForm';
@@ -16,7 +17,7 @@ class Register extends React.Component {
     super(props);
     this.state = {
         isAuthenticated: false,
-        buttonDisabled: true,
+        buttonDisabled: false,
         userSession: {},
         userData: {
           username: '',
@@ -29,12 +30,12 @@ class Register extends React.Component {
           photo: '',
         }
     };
-  }
+  };
 
   componentDidMount = () => {
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
     this.setState({ userSession });
-  }
+  };
 
   userDataHandleChange = async (event) => {
     let { userData } = this.state;
@@ -54,7 +55,39 @@ class Register extends React.Component {
       userData[userDataKey] = event.target.value;
       this.setState({ userData });
     }
-  }
+  };
+
+  signUp = () => {
+    const {
+      userData: {
+        username,
+        email,
+        password,
+        name,
+        lastName,
+      }
+    } = this.state;
+
+    if (isEmpty(username)) {
+      return false;
+    }
+    if (isEmpty(email)) {
+      return false;
+    }
+    if (!Isemail.validate(email)) {
+      return false;
+    }
+    if (isEmpty(password)) {
+      return false;
+    }
+    if (isEmpty(name)) {
+      return false;
+    }
+    if (isEmpty(lastName)) {
+      return false;
+    }
+
+  };
 
   render() {
     const {
@@ -72,6 +105,7 @@ class Register extends React.Component {
                   <RegisterForm
                     buttonDisabled={buttonDisabled}
                     userDataHandleChange={this.userDataHandleChange}
+                    signUp={this.signUp}
                   />
                 </Row>
               </ListGroupItem>

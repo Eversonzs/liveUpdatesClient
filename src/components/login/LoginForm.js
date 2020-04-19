@@ -44,9 +44,9 @@ const LoginForm = (props) => {
         </FormGroup>
         <Row className='col float-right'>
           <Button
-          onClick={() => login()}
-          className='ml-auto'
-          disabled={buttonDisabled}
+            onClick={() => login()}
+            className='ml-auto'
+            disabled={buttonDisabled}
           >
             Login
           </Button>

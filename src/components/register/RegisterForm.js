@@ -14,6 +14,7 @@ const RegisterForm = (props) => {
   const {
     buttonDisabled,
     userDataHandleChange,
+    signUp,
   } = props;
 
   return (
@@ -104,9 +105,9 @@ const RegisterForm = (props) => {
         </FormGroup>
         <Row className='col float-right'>
           <Button
-          // onClick={() => login()}
-          className='ml-auto'
-          disabled={buttonDisabled}
+            onClick={() => signUp()}
+            className='ml-auto'
+            disabled={buttonDisabled}
           >
             Sing up
           </Button>
