@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'shards-react';
 import { Redirect } from 'react-router-dom';
+import { isEmpty } from 'lodash';
 
 import PageTitle from '../components/common/PageTitle';
 import UserDetails from '../components/user-profile-lite/UserDetails';
@@ -17,13 +18,15 @@ class UserProfileLite extends React.Component {
 
   componentDidMount = () => {
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
-    if (!userSession) {
+    if (isEmpty(userSession)) {
       this.setState({ userSession, isAuthenticated: false });
+    } else {
+      this.setState({ userSession });
     }
   }
 
   render() {
-    const { isAuthenticated } = this.state;
+    const { isAuthenticated, userSession } = this.state;
     return (
       isAuthenticated ?
       (
@@ -33,7 +36,9 @@ class UserProfileLite extends React.Component {
           </Row>
           <Row>
             <Col lg='4'>
-              <UserDetails />
+              <UserDetails
+                userSession={userSession}
+              />
             </Col>
             <Col lg='8'>
               <UserAccountDetails />
