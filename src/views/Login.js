@@ -13,7 +13,7 @@ import LoginForm from '../components/login/LoginForm';
 const Login = () => (
   <Container fluid className='main-content-container'>
     <ListGroup flush className={`${styles.loginBox}`}>
-      <ListGroupItem className='p-3'>
+      <ListGroupItem>
         <Row className={styles.rowCenter}>
           <LoginForm />
         </Row>
