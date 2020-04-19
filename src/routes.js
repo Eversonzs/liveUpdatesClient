@@ -5,9 +5,10 @@ import { Redirect } from 'react-router-dom';
 import { DefaultLayout, LoginRegisterLayout } from './layouts';
 
 // Route Views
-import UserProfileLite from './views/UserProfileLite';
 import Login from './views/Login';
 import Register from './views/Register';
+import UserProfileLite from './views/UserProfileLite';
+import NewsBlog from './views/NewsBlog';
 import Logout from './views/Logout';
 
 export default [
@@ -31,6 +32,11 @@ export default [
     path: '/user-profile',
     layout: DefaultLayout,
     component: UserProfileLite
+  },
+  {
+    path: '/news-blog',
+    layout: DefaultLayout,
+    component: NewsBlog
   },
   {
     path: '/logout',
