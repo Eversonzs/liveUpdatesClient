@@ -7,7 +7,8 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'shards-react';
-import Isemail from 'isemail';
+import isEmail from 'isemail';
+import { NotificationManager } from 'react-notifications';
 
 import styles from './modulesCss/Register.module.css';
 import RegisterForm from '../components/register/RegisterForm';
@@ -59,6 +60,7 @@ class Register extends React.Component {
 
   signUp = () => {
     const {
+      userData,
       userData: {
         username,
         email,
@@ -69,21 +71,27 @@ class Register extends React.Component {
     } = this.state;
 
     if (isEmpty(username)) {
+      NotificationManager.error('Username is required');
       return false;
     }
     if (isEmpty(email)) {
+      NotificationManager.error('Email is required');
       return false;
     }
-    if (!Isemail.validate(email)) {
+    if (!isEmail.validate(email)) {
+      NotificationManager.error('Invalid email format');
       return false;
     }
     if (isEmpty(password)) {
+      NotificationManager.error('Password is required');
       return false;
     }
     if (isEmpty(name)) {
+      NotificationManager.error('Name is required');
       return false;
     }
     if (isEmpty(lastName)) {
+      NotificationManager.error('Last Name is required');
       return false;
     }
 
