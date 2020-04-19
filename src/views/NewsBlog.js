@@ -9,8 +9,10 @@ import {
   CardBody,
   Badge,
 } from 'shards-react';
+import { isEmpty } from 'lodash';
 
 import PageTitle from '../components/common/PageTitle';
+import getAllPosts from '../services/getAllPosts';
 
 class BlogPosts extends React.Component {
   constructor(props) {
@@ -18,63 +20,28 @@ class BlogPosts extends React.Component {
 
     this.state = {
       allPosts: [],
-      PostsListOne: [
-        {
-          // backgroundImage: require("../images/content-management/1.jpeg"),
-          category: "Business",
-          categoryTheme: "dark",
-          author: "Anna Kunis",
-          authorAvatar: require("../images/avatars/no-profile-image.png"),
-          title: "Conduct at an replied removal an amongst",
-          body:
-            "However venture pursuit he am mr cordial. Forming musical am hearing studied be luckily. But in for determine what would see...",
-          date: "28 February 2019"
-        },
-        {
-          // backgroundImage: require("../images/content-management/2.jpeg"),
-          category: "Travel",
-          categoryTheme: "info",
-          author: "James Jamerson",
-          authorAvatar: require("../images/avatars/no-profile-image.png"),
-          title: "Off tears are day blind smile alone had ready",
-          body:
-            "Is at purse tried jokes china ready decay an. Small its shy way had woody downs power. To denoting admitted speaking learning my...",
-          date: "29 February 2019"
-        },
-        {
-          // backgroundImage: require("../images/content-management/3.jpeg"),
-          category: "Technology",
-          categoryTheme: "royal-blue",
-          author: "Jimmy Jackson",
-          authorAvatar: require("../images/avatars/no-profile-image.png"),
-          title: "Difficult in delivered extensive at direction",
-          body:
-            "Is at purse tried jokes china ready decay an. Small its shy way had woody downs power. To denoting admitted speaking learning my...",
-          date: "29 February 2019"
-        },
-        {
-          // backgroundImage: require("../images/content-management/4.jpeg"),
-          category: "Business",
-          categoryTheme: "warning",
-          author: "John James",
-          authorAvatar: require("../images/avatars/no-profile-image.png"),
-          title: "It so numerous if he may outlived disposal",
-          body:
-            "How but sons mrs lady when. Her especially are unpleasant out alteration continuing unreserved ready road market resolution...",
-          date: "29 February 2019"
-        }
-      ],
     };
   }
 
   componentDidMount = () => {
-
+    getAllPosts()
+      .then(response => {
+        if (response.code === 200) {
+          this.setState({ allPosts: response.posts });
+        }
+        console.log('posts-->>', response);
+      })
+      .catch(error => {
+        console.log('error-->>', error);
+      })
   };
 
   render() {
     const {
-      PostsListOne,
+      allPosts,
     } = this.state;
+
+    const defaultPostImage = '../image/default-news-post.png';
 
     return (
       <Container fluid className='main-content-container px-4'>
@@ -85,37 +52,38 @@ class BlogPosts extends React.Component {
 
         {/* First Row of Posts */}
         <Row>
-          {PostsListOne.map((post, idx) => (
-            <Col lg='6' md='6' sm='12' className='mb-4' key={idx}>
+          {allPosts.map(post => (
+            <Col lg='6' md='6' sm='12' className='mb-4' key={post.post_id}>
               <Card small className='card-post card-post--1'>
                 <div
                   className='card-post__image'
-                  style={{ backgroundImage: `url(${post.backgroundImage})` }}
+                  style={{ backgroundImage: `url(${isEmpty(post.image) ? defaultPostImage : post.image})` }}
                 >
                   <Badge
                     pill
-                    className={`card-post__category bg-${post.categoryTheme}`}
+                    className={`card-post__category bg-${post.category_name}`}
                   >
-                    {post.category}
+                    {post.category_name}
                   </Badge>
                   <div className="card-post__author d-flex">
                     <a
                       href="#"
                       className="card-post__author-avatar card-post__author-avatar--small"
-                      style={{ backgroundImage: `url('${post.authorAvatar}')` }}
+                      style={{ backgroundImage: `url(${post.user_photo})` }}
                     >
-                      Written by {post.author}
+                      Written by @{post.username}
                     </a>
                   </div>
                 </div>
                 <CardBody>
-                  <h5 className="card-title">
-                    <a href="#" className="text-fiord-blue">
+                  <h5 className='card-title'>
+                    <a href='#' className='text-fiord-blue'>
                       {post.title}
                     </a>
                   </h5>
-                  <p className="card-text d-inline-block mb-3">{post.body}</p>
-                  <span className="text-muted">{post.date}</span>
+                  <p className='card-text d-inline-block mb-3'>{post.description}</p>
+                  <br></br>
+                  <span className='text-muted'>{new Date(post.timestamp).toString('YYYY-MM-DD - hh:mm:ss')}</span>
                 </CardBody>
               </Card>
             </Col>
