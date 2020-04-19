@@ -12,6 +12,7 @@ class UserProfileLite extends React.Component {
     super(props);
     this.state = {
       userSession: {},
+      userInfo: {},
       isAuthenticated: true,
     };
   }
@@ -21,6 +22,7 @@ class UserProfileLite extends React.Component {
     if (isEmpty(userSession)) {
       this.setState({ userSession, isAuthenticated: false });
     } else {
+      
       this.setState({ userSession });
     }
   }
@@ -41,7 +43,12 @@ class UserProfileLite extends React.Component {
               />
             </Col>
             <Col lg='8'>
-              <UserAccountDetails />
+              <UserAccountDetails
+                userInfo
+                userDataHandleChange
+                buttonDisabled
+                updateUser
+              />
             </Col>
           </Row>
         </Container>
