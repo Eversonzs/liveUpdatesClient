@@ -38,11 +38,12 @@ class Register extends React.Component {
 
   userDataHandleChange = (event) => {
     let { userData } = this.state;
-    const key = userData[event.target.id];
-    console.log('key...>>', key);
-    this.setState({
-      [key]: event.target.value
-    });
+    userData = {
+      ...userData,
+      [event.target.id]: event.target.value
+    };
+
+    this.setState({ userData });
   } 
 
   render() {
@@ -51,26 +52,26 @@ class Register extends React.Component {
         buttonDisabled,
     } = this.state;
 
+    console.log('userSession--<<-', userSession);
+
     return (
-        !isEmpty(userSession) ?
-          <Redirect to='/user-profile' /> :
-        /* loginSuccess ? 
-          <Redirect to='/user-profile' /> : */
-          (
-            <Container fluid className='main-content-container'>
-              <ListGroup flush className={styles.registerBox}>
-                <ListGroupItem>
-                  <Row className={styles.rowCenter}>
-                    <RegisterForm
-                      buttonDisabled={buttonDisabled}
-                      userDataHandleChange={this.userDataHandleChange}
-                    />
-                  </Row>
-                </ListGroupItem>
-              </ListGroup>
-            </Container>
-          )
-      );
+      isEmpty(userSession) ?
+        (
+          <Container fluid className='main-content-container'>
+            <ListGroup flush className={styles.registerBox}>
+              <ListGroupItem>
+                <Row className={styles.rowCenter}>
+                  <RegisterForm
+                    buttonDisabled={buttonDisabled}
+                    userDataHandleChange={this.userDataHandleChange}
+                  />
+                </Row>
+              </ListGroupItem>
+            </ListGroup>
+          </Container>
+        ) :
+        <Redirect to='/user-profile' />
+    );
   }
 };
 

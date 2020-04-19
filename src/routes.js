@@ -31,10 +31,10 @@ export default [
     layout: DefaultLayout,
     component: UserProfileLite
   },
-  {
+  /* {
     path: '*',
     exact: true,
     layout: LoginRegisterLayout,
     component: () => <Redirect to='/login' />
-  },
+  }, */
 ];
