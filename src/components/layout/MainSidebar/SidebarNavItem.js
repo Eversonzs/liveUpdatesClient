@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink as RouteNavLink } from 'react-router-dom';
 import { NavItem, NavLink } from 'shards-react';
 
 const SidebarNavItem = ({ item }) => (
   <NavItem>
-    <NavLink to={item.to}>
+    <NavLink tag={RouteNavLink} to={item.to}>
       {item.htmlBefore && (
         <div
           className='d-inline-block item-icon-wrapper'
