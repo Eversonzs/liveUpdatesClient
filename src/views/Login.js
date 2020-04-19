@@ -5,6 +5,7 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'shards-react'
+import { Redirect } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 
 import styles from './modulesCss/Login.module.css';
@@ -18,6 +19,7 @@ class Login extends React.Component {
       email: '',
       password: '',
       buttonDisabled: false,
+      loginSuccess: false,
     };
   }
 
@@ -34,7 +36,7 @@ class Login extends React.Component {
     .then(result => {
       // TODO: save result for user session
       console.log('result: ', result);
-      this.setState({ buttonDisabled: false });
+      this.setState({ buttonDisabled: false, loginSuccess: true });
       NotificationManager.success('Login successful');
     }).catch(error => {
       this.setState({ buttonDisabled: false });
@@ -43,21 +45,25 @@ class Login extends React.Component {
   }
 
   render() {
-    const { buttonDisabled } = this.state;
+    const { buttonDisabled, loginSuccess } = this.state;
     return (
-      <Container fluid className='main-content-container'>
-        <ListGroup flush className={styles.loginBox}>
-          <ListGroupItem>
-            <Row className={styles.rowCenter}>
-              <LoginForm
-                login={this.login}
-                inputsHandleChange={this.inputsHandleChange}
-                buttonDisabled={buttonDisabled}
-              />
-            </Row>
-          </ListGroupItem>
-        </ListGroup>
-      </Container>
+      loginSuccess ? 
+      <Redirect to='/user-profile' /> :
+      (
+        <Container fluid className='main-content-container'>
+          <ListGroup flush className={styles.loginBox}>
+            <ListGroupItem>
+              <Row className={styles.rowCenter}>
+                <LoginForm
+                  login={this.login}
+                  inputsHandleChange={this.inputsHandleChange}
+                  buttonDisabled={buttonDisabled}
+                />
+              </Row>
+            </ListGroupItem>
+          </ListGroup>
+        </Container>
+      )
     );
   }
 };
