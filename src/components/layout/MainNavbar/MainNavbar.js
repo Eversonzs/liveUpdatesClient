@@ -2,30 +2,55 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Container, Navbar } from 'shards-react';
+import { isEmpty } from 'lodash';
 
 import NavbarNav from './NavbarNav/NavbarNav';
 import NavbarToggle from './NavbarToggle';
 
-const MainNavbar = ({ layout, stickyTop }) => {
-  const classes = classNames(
-    'main-navbar',
-    'bg-white',
-    stickyTop && 'sticky-top'
-  );
+class MainNavbar extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div className={classes}>
-      <Container className='p-0'>
-        <Navbar type='light' className='align-items-stretch flex-md-nowrap p-0'>
-          <div className='navbar-nav ml-auto'>
-            <NavbarNav />
-            <NavbarToggle />
-          </div>
-        </Navbar>
-      </Container>
-    </div>
-  );
-};
+    this.state = {
+      userSession: {},
+      isAuthenticated: true,
+    };
+  }
+
+  componentDidMount = () => {
+    const userSession = JSON.parse(sessionStorage.getItem('userSession'));
+    if (isEmpty(userSession)) {
+      this.setState({ userSession, isAuthenticated: false });
+    } else {
+      this.setState({ userSession });
+    }
+  }
+
+  render () {
+    const { stickyTop } = this.props;
+    const { userSession } = this.state;
+    const classes = classNames(
+      'main-navbar',
+      'bg-white',
+      stickyTop && 'sticky-top'
+    );
+    
+    return (
+      <div className={classes}>
+        <Container className='p-0'>
+          <Navbar type='light' className='align-items-stretch flex-md-nowrap p-0'>
+            <div className='navbar-nav ml-auto'>
+              <NavbarNav
+                userSession={userSession}
+              />
+              <NavbarToggle />
+            </div>
+          </Navbar>
+        </Container>
+      </div>
+    )
+  }   
+}
 
 MainNavbar.propTypes = {
   /**

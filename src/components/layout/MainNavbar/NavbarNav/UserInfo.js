@@ -7,31 +7,22 @@ import styles from './UserInfo.module.css';
 
 const UserInfo = (props) => {
   const {
-    username,
-    photo,
+    userSession,
   } = props;
 
   return (
     <NavItem>
       <div className={`text-nowrap px-3 ${styles.usernameNavBar}`}>
-        {
-          isEmpty(photo) ?
-          (
-            <img
-              className='user-avatar rounded-circle mr-2'
-              src={require('../../../../images/avatars/no-profile-image.png')}
-              alt='User Avatar'
-            />
-          ) : 
-          (
-            <img
-              className='user-avatar rounded-circle mr-2'
-              src={photo}
-              alt='User Avatar'
-            />
-          )
-        }
-        <span className='d-none d-md-inline-block'>{username}</span>
+        <img
+          className='user-avatar rounded-circle mr-2'
+          src={
+            isEmpty(userSession.photo) ?
+              require('../../../../images/avatars/no-profile-image.png') :
+              userSession.photo
+            }
+          alt='User Avatar'
+        />
+        <span className='d-none d-md-inline-block'>{userSession.username}</span>
       </div>
     </NavItem>
   );
