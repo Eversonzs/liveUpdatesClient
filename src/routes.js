@@ -7,6 +7,7 @@ import { DefaultLayout, LoginRegisterLayout } from './layouts';
 // Route Views
 import UserProfileLite from './views/UserProfileLite';
 import Login from './views/Login';
+import Register from './views/Register';
 
 export default [
   {
@@ -19,6 +20,11 @@ export default [
     path: '/login',
     layout: LoginRegisterLayout,
     component: Login
+  },
+  {
+    path: '/register',
+    layout: LoginRegisterLayout,
+    component: Register
   },
   {
     path: '/user-profile',
