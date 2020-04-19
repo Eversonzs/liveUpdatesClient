@@ -30,8 +30,9 @@ class Register extends React.Component {
           birthday: '',
           cellphone: '',
           photo: '',
-        }
-    };
+        },
+        userRegistered: false,
+      };
   };
 
   componentDidMount = () => {
@@ -100,6 +101,7 @@ class Register extends React.Component {
       .then(response => {
         if (response.code === 201 ) {
           NotificationManager.success('Your user has been created!');
+          this.setState({ userRegistered: true });
         } else {
           NotificationManager.error('Please try again.');
         }
@@ -115,25 +117,28 @@ class Register extends React.Component {
     const {
         userSession,
         buttonDisabled,
+        userRegistered,
     } = this.state;
 
     return (
       isEmpty(userSession) ?
-        (
-          <Container fluid className='main-content-container'>
-            <ListGroup flush className={styles.registerBox}>
-              <ListGroupItem>
-                <Row className={styles.rowCenter}>
-                  <RegisterForm
-                    buttonDisabled={buttonDisabled}
-                    userDataHandleChange={this.userDataHandleChange}
-                    signUp={this.signUp}
-                  />
-                </Row>
-              </ListGroupItem>
-            </ListGroup>
-          </Container>
-        ) :
+        userRegistered ? 
+          <Redirect to='/login' /> :
+          (
+            <Container fluid className='main-content-container'>
+              <ListGroup flush className={styles.registerBox}>
+                <ListGroupItem>
+                  <Row className={styles.rowCenter}>
+                    <RegisterForm
+                      buttonDisabled={buttonDisabled}
+                      userDataHandleChange={this.userDataHandleChange}
+                      signUp={this.signUp}
+                    />
+                  </Row>
+                </ListGroupItem>
+              </ListGroup>
+            </Container>
+          ) :
         <Redirect to='/user-profile' />
     );
   }
