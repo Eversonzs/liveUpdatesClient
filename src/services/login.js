@@ -6,6 +6,6 @@ const liveUpdatesLogin = (email, password) =>
         { email, password }
     )
     .then(({ data }) => Promise.resolve(data))
-    .catch(error => Promise.reject(error.response))
+    .catch(error => Promise.reject(error.response.data))
 
 export default liveUpdatesLogin;

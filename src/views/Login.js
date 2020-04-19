@@ -5,6 +5,7 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'shards-react'
+import { NotificationManager } from 'react-notifications';
 
 import styles from './modulesCss/Login.module.css';
 import LoginForm from '../components/login/LoginForm';
@@ -27,12 +28,13 @@ class Login extends React.Component {
 
   login = async () => {
     const { email, password } = this.state;
-    console.log('email, password', email, password);
     await liveUpdatesLogin(email, password)
     .then(result => {
       console.log('result---->>>', result);
-    }).catch(err => {
-      console.log('err---->>>', err);
+      NotificationManager.success('Login successful');
+    }).catch(error => {
+      console.log('error---->>>', error);
+      NotificationManager.error(error.message);
       return false;
     });
     return false;
