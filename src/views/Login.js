@@ -20,7 +20,14 @@ class Login extends React.Component {
       password: '',
       buttonDisabled: false,
       loginSuccess: false,
+      userSession: {},
     };
+  }
+
+  componentDidMount = () => {
+    const userSession = JSON.parse(sessionStorage.getItem('userSession'));
+    this.setState({ userSession });
+    console.log('userSession.-->', userSession);
   }
 
   inputsHandleChange = (event) => {
@@ -48,25 +55,32 @@ class Login extends React.Component {
   }
 
   render() {
-    const { buttonDisabled, loginSuccess } = this.state;
+    const {
+      buttonDisabled,
+      loginSuccess,
+      userSession,
+    } = this.state;
+
     return (
+      userSession.user_id ?
+        <Redirect to='/user-profile' /> :
       loginSuccess ? 
-      <Redirect to='/user-profile' /> :
-      (
-        <Container fluid className='main-content-container'>
-          <ListGroup flush className={styles.loginBox}>
-            <ListGroupItem>
-              <Row className={styles.rowCenter}>
-                <LoginForm
-                  login={this.login}
-                  inputsHandleChange={this.inputsHandleChange}
-                  buttonDisabled={buttonDisabled}
-                />
-              </Row>
-            </ListGroupItem>
-          </ListGroup>
-        </Container>
-      )
+        <Redirect to='/user-profile' /> :
+        (
+          <Container fluid className='main-content-container'>
+            <ListGroup flush className={styles.loginBox}>
+              <ListGroupItem>
+                <Row className={styles.rowCenter}>
+                  <LoginForm
+                    login={this.login}
+                    inputsHandleChange={this.inputsHandleChange}
+                    buttonDisabled={buttonDisabled}
+                  />
+                </Row>
+              </ListGroupItem>
+            </ListGroup>
+          </Container>
+        )
     );
   }
 };
