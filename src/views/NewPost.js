@@ -72,6 +72,7 @@ class NewPost extends React.Component {
       postDescription,
       userSession,
       category,
+      image,
     } = this.state;
 
     if (isEmpty(postTitle)) {
@@ -88,7 +89,7 @@ class NewPost extends React.Component {
       userId: parseInt(userSession.user_id),
       title: postTitle,
       description: postDescription,
-      image: '',
+      image,
     }
     CreatePost(postData)
       .then(response => {
@@ -98,6 +99,7 @@ class NewPost extends React.Component {
               postTitle: '',
               postDescription: '',
               category: 0,
+              image: '',
           })
         }
       })
