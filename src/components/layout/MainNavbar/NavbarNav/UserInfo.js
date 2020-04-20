@@ -10,7 +10,6 @@ const UserInfo = (props) => {
     userSession,
   } = props;
 
-  console.log('userSession-->>', userSession);
   return (
     <NavItem>
       <div className={`text-nowrap px-3 ${styles.usernameNavBar}`}>
