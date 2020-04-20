@@ -7,6 +7,7 @@ import {
     FormInput,
     Row,
     Button,
+    FormSelect,
 } from 'shards-react';
 
 import 'react-quill/dist/quill.snow.css';
@@ -19,12 +20,28 @@ const Editor = (props) => {
       isButtonDisable,
       postTitle,
       postDescription,
+      postCategories,
   } = props;
 
   return (
     <Card small className='mb-3'>
       <CardBody>
         <Form className='add-new-post'>
+          <FormSelect
+            className='categories-form-select'
+            id='category'
+            onChange={(e) => handleOnChange(e)}
+          >
+            <option value='0' disabled selected>Select a category for the post.</option>
+            {
+              postCategories.map(category => (
+                <option value={category.post_category_id}>
+                  {category.name}
+                </option>
+              ))
+            }
+          </FormSelect>
+          <br></br>
             <FormInput
               size='lg'
               className='mb-3'

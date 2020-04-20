@@ -2,3 +2,6 @@
 .add-new-post__editor .ql-editor {
   min-height: 400px;
 }
+.categories-form-select {
+    margin-bottom: 15px;
+}

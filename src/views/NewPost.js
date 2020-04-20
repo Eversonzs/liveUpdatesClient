@@ -27,7 +27,7 @@ class NewPost extends React.Component {
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
     this.setState({ userSession });
     const postCategories = await GetPostCategories();
-    let categories = [{ name: 'There is not categories'}];
+    let categories = [{ post_category_id: 0, name: 'There is not categories'}];
     if (postCategories.code === 200) {
         categories = postCategories.categories;
     }
