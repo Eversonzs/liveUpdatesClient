@@ -6,5 +6,20 @@ export default function() {
       to: '/user-profile',
       htmlAfter: ''
     },
+    {
+      title: 'News Blog',
+      htmlBefore: '<i class="material-icons">vertical_split</i>',
+      to: '/news-blog',
+    },
+    {
+      title: 'Add New Post',
+      htmlBefore: '<i class="material-icons">note_add</i>',
+      to: '/new-post',
+    },
+    {
+      title: 'Logout',
+      htmlBefore: '<i class="material-icons">exit_to_app</i>',
+      to: '/logout',
+    },
   ];
 }

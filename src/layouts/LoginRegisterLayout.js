@@ -5,18 +5,16 @@ import { NotificationContainer } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 
 import MainNavbar from '../components/layout/MainNavbar/MainNavbar';
-import MainSidebar from '../components/layout/MainSidebar/MainSidebar';
 import MainFooter from '../components/layout/MainFooter';
 
-const DefaultLayout = ({ children, noNavbar, noFooter }) => (
+import styles from '../views/modulesCss/Login.module.css'
+
+const LoginRegisterLayout = ({ children, noNavbar, noFooter }) => (
   <div className='app-container'>
     <Container fluid>
       <Row>
-        <MainSidebar />
         <Col
-          className='main-content p-0'
-          lg={{ size: 10, offset: 2 }}
-          md={{ size: 9, offset: 3 }}
+          className={`main-content p-0 ${styles.mainContainer}`}
           sm='12'
           tag='main'
         >
@@ -30,7 +28,7 @@ const DefaultLayout = ({ children, noNavbar, noFooter }) => (
   </div>
 );
 
-DefaultLayout.propTypes = {
+LoginRegisterLayout.propTypes = {
   /**
    * Whether to display the navbar, or not.
    */
@@ -41,9 +39,9 @@ DefaultLayout.propTypes = {
   noFooter: PropTypes.bool
 };
 
-DefaultLayout.defaultProps = {
-  noNavbar: false,
+LoginRegisterLayout.defaultProps = {
+  noNavbar: true,
   noFooter: false
 };
 
-export default DefaultLayout;
+export default LoginRegisterLayout;

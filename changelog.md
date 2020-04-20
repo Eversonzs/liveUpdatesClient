@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 ## Update
+## [0.1.3] - 2020-04-19
+* News blog, add new post and user profile read only component added.
+* Service to retrieve all posts and create new post.
+## Update
+## [0.1.2] - 2020-04-18
+* Login, register and profile views and components.
+* Create axios connection to live updates server.
+* Create services to login and register user.
+## Update
 ## [0.1.1] - 2020-04-16
 * Template shards-react added to project.
 * First route, view and component added.

@@ -1,0 +1,16 @@
+.mainContainer {
+    background-image: url('../../images/login-register-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.loginBox {
+    margin-top: 10%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.rowCenter {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+}
