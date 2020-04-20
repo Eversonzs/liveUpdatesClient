@@ -17,6 +17,7 @@ class NewPost extends React.Component {
       loading: true,
       postTitle: '',
       postDescription: '',
+      category: 0,
       userSession: {},
       isButtonDisable: true,
       postCategories: [],
@@ -56,6 +57,7 @@ class NewPost extends React.Component {
       postTitle,
       postDescription,
       userSession,
+      category,
     } = this.state;
 
     if (isEmpty(postTitle)) {
@@ -68,7 +70,7 @@ class NewPost extends React.Component {
     }
 
     const postData = {
-      postCategoryId: 1,
+      postCategoryId: parseInt(category),
       userId: parseInt(userSession.user_id),
       title: postTitle,
       description: postDescription,
@@ -81,6 +83,7 @@ class NewPost extends React.Component {
           this.setState({
               postTitle: '',
               postDescription: '',
+              category: 0,
           })
         }
       })
@@ -96,6 +99,7 @@ class NewPost extends React.Component {
       postDescription,
       loading,
       postCategories,
+      category,
     } = this.state;
 
     return (
@@ -121,6 +125,7 @@ class NewPost extends React.Component {
                 postTitle={postTitle}
                 postDescription={postDescription}
                 postCategories={postCategories}
+                category={category}
                 />
             </Col>
             </Row>

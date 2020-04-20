@@ -21,6 +21,7 @@ const Editor = (props) => {
       postTitle,
       postDescription,
       postCategories,
+      category
   } = props;
 
   return (
@@ -31,11 +32,12 @@ const Editor = (props) => {
             className='categories-form-select'
             id='category'
             onChange={(e) => handleOnChange(e)}
+            value={category}
           >
-            <option value='0' disabled selected>Select a category for the post.</option>
+            <option value='0' key='0' defaultValue hidden>Select a category for the post.</option>
             {
               postCategories.map(category => (
-                <option value={category.post_category_id}>
+                <option value={category.post_category_id} key={category.post_category_id}>
                   {category.name}
                 </option>
               ))
