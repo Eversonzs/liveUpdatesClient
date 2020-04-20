@@ -57,13 +57,9 @@ class BlogPosts extends React.Component {
           </Row>
       { loading ?
         (
-          <Row>
-            <Col lg='12' md='12' sm='12' className='mb-4'>
-              <Card small className={`card-post card-post--1 ${styles.cardCenterItems}`}>
-                <ReactLoading type='bars' color='#007bff' />
-              </Card>
-            </Col>
-          </Row>
+          <div className={styles.divElementsCenter}>
+              <ReactLoading type='bars' color='#007bff' />
+          </div>
         ) :
         noPosts ?
         (
