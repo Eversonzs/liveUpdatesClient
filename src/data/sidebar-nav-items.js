@@ -17,6 +17,11 @@ export default function() {
       to: '/new-post',
     },
     {
+      title: 'Covid Statistics',
+      htmlBefore: '<i class="material-icons">insert_chart</i>',
+      to: '/covid-statistics',
+    },
+    {
       title: 'Logout',
       htmlBefore: '<i class="material-icons">exit_to_app</i>',
       to: '/logout',

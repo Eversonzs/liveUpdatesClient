@@ -10,6 +10,7 @@ import Register from './views/Register';
 import UserProfileLite from './views/UserProfileLite';
 import NewsBlog from './views/NewsBlog';
 import NewPost from './views/NewPost';
+import CovidStatistics from './views/CovidStatistics';
 import Logout from './views/Logout';
 
 export default [
@@ -43,6 +44,11 @@ export default [
     path: '/new-post',
     layout: DefaultLayout,
     component: NewPost
+  },
+  {
+    path: '/covid-statistics',
+    layout: DefaultLayout,
+    component: CovidStatistics
   },
   {
     path: '/logout',
