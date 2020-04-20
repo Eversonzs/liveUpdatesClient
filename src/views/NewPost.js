@@ -84,6 +84,8 @@ class NewPost extends React.Component {
         return false;
     }
 
+    this.setState({ isButtonDisable: true });
+
     const postData = {
       postCategoryId: parseInt(category),
       userId: parseInt(userSession.user_id),
@@ -100,11 +102,13 @@ class NewPost extends React.Component {
               postDescription: '',
               category: 0,
               image: '',
+              isButtonDisable: false,
           })
         }
       })
       .catch(() => {
         NotificationManager.success('Error, please try again!');
+        this.setState({ isButtonDisable: false });
       })
   }
 
