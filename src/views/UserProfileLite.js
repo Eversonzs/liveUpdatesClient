@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Row, Col } from 'shards-react';
-import { Redirect } from 'react-router-dom';
 import { isEmpty } from 'lodash';
 import { NotificationManager } from 'react-notifications';
 
@@ -26,7 +25,6 @@ class UserProfileLite extends React.Component {
           cellphone: '',
           photo: '',
       },
-      isAuthenticated: true,
       usernameUrl,
       sameUserLoggedIn: false,
     };
@@ -36,7 +34,7 @@ class UserProfileLite extends React.Component {
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
     const { usernameUrl } = this.state;
     if (isEmpty(userSession)) {
-      this.setState({ userSession, isAuthenticated: false });
+      this.setState({ userSession });
     } else {
       if (userSession.username === usernameUrl) {
         this.setState({ sameUserLoggedIn: true });
@@ -94,46 +92,41 @@ class UserProfileLite extends React.Component {
 
   render() {
     const {
-      isAuthenticated,
       userInfo,
       sameUserLoggedIn,
     } = this.state;
 
     return (
-      isAuthenticated ?
-      (
-        <Container fluid className='main-content-container px-4'>
-          <Row noGutters className='page-header py-4'>
-            <PageTitle title='User Profile' subtitle='Overview' md='12' className='ml-sm-auto mr-sm-auto' />
-          </Row>
-          <Row>
-            <Col lg='4'>
-              <UserDetails
-                userInfo={userInfo}
-              />
-            </Col>
-            <Col lg='8'>
-              {
-                sameUserLoggedIn ? 
-                  ( 
-                    <UserAccountDetails
-                      userInfo={userInfo}
-                      userDataHandleChange={this.userDataHandleChange}
-                      buttonDisabled
-                      updateUser
-                    />
-                  ) :
-                  (
-                    <UserAccountDetailsRead
-                      userInfo={userInfo}
-                    />
-                  )
-              }
-            </Col>
-          </Row>
-        </Container>
-      ) :
-      <Redirect to='/login'/>
+      <Container fluid className='main-content-container px-4'>
+        <Row noGutters className='page-header py-4'>
+          <PageTitle title='User Profile' subtitle='Overview' md='12' className='ml-sm-auto mr-sm-auto' />
+        </Row>
+        <Row>
+          <Col lg='4'>
+            <UserDetails
+              userInfo={userInfo}
+            />
+          </Col>
+          <Col lg='8'>
+            {
+              sameUserLoggedIn ? 
+                ( 
+                  <UserAccountDetails
+                    userInfo={userInfo}
+                    userDataHandleChange={this.userDataHandleChange}
+                    buttonDisabled
+                    updateUser
+                  />
+                ) :
+                (
+                  <UserAccountDetailsRead
+                    userInfo={userInfo}
+                  />
+                )
+            }
+          </Col>
+        </Row>
+      </Container>
     )
   };
 };

@@ -10,19 +10,20 @@ const UserInfo = (props) => {
     userSession,
   } = props;
 
+  console.log('userSession-->>', userSession);
   return (
     <NavItem>
       <div className={`text-nowrap px-3 ${styles.usernameNavBar}`}>
         <img
           className='user-avatar rounded-circle mr-2'
           src={
-            isEmpty(userSession.photo) ?
+            isEmpty(userSession.photo || '') ?
               require('../../../../images/avatars/no-profile-image.png') :
               userSession.photo
             }
           alt='User Avatar'
         />
-        <span className='d-none d-md-inline-block'>{userSession.username}</span>
+        <span className='d-none d-md-inline-block'>{userSession.username || ''}</span>
       </div>
     </NavItem>
   );

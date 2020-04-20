@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Container, Navbar } from 'shards-react';
 import { isEmpty } from 'lodash';
+import { Redirect } from 'react-router-dom';
 
 import NavbarNav from './NavbarNav/NavbarNav';
 import NavbarToggle from './NavbarToggle';
@@ -20,7 +21,7 @@ class MainNavbar extends React.Component {
   componentDidMount = () => {
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));
     if (isEmpty(userSession)) {
-      this.setState({ userSession, isAuthenticated: false });
+      this.setState({ isAuthenticated: false });
     } else {
       this.setState({ userSession });
     }
@@ -28,7 +29,7 @@ class MainNavbar extends React.Component {
 
   render () {
     const { stickyTop } = this.props;
-    const { userSession } = this.state;
+    const { userSession, isAuthenticated } = this.state;
     const classes = classNames(
       'main-navbar',
       'bg-white',
@@ -36,18 +37,22 @@ class MainNavbar extends React.Component {
     );
     
     return (
-      <div className={classes}>
-        <Container className='p-0'>
-          <Navbar type='light' className='align-items-stretch flex-md-nowrap p-0'>
-            <div className='navbar-nav ml-auto'>
-              <NavbarNav
-                userSession={userSession}
-              />
-              <NavbarToggle />
-            </div>
-          </Navbar>
-        </Container>
-      </div>
+      isAuthenticated ?
+      (
+        <div className={classes}>
+          <Container className='p-0'>
+            <Navbar type='light' className='align-items-stretch flex-md-nowrap p-0'>
+              <div className='navbar-nav ml-auto'>
+                <NavbarNav
+                  userSession={userSession}
+                />
+                <NavbarToggle />
+              </div>
+            </Navbar>
+          </Container>
+        </div>
+      ) :
+      <Redirect to='/login'/>
     )
   }   
 }
