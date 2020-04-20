@@ -7,7 +7,9 @@ import {
   CardBody,
 } from 'shards-react';
 import { NotificationManager } from 'react-notifications';
+import ReactLoading from 'react-loading';
 
+import styles from './modulesCss/NewsBlog.module.css';
 import PageTitle from '../components/common/PageTitle';
 import PostsCards from '../components/news-blog/PostsCards';
 import getAllPosts from '../services/getAllPosts';
@@ -30,12 +32,13 @@ class BlogPosts extends React.Component {
           this.setState({
             allPosts: response.posts,
             noPosts: false,
+            loading: false,
           });
         }
       })
       .catch(error => {
         NotificationManager.error(error.message);
-        this.setState({ noPosts: false });
+        this.setState({ noPosts: false, loading: false });
       })
   };
 
@@ -43,6 +46,7 @@ class BlogPosts extends React.Component {
     const {
       allPosts,
       noPosts,
+      loading,
     } = this.state;
 
     return (
@@ -51,7 +55,17 @@ class BlogPosts extends React.Component {
           <Row noGutters className='page-header py-4'>
             <PageTitle sm='4' title='News Blog' className='text-sm-left' />
           </Row>
-      { noPosts ? 
+      { loading ?
+        (
+          <Row>
+            <Col lg='12' md='12' sm='12' className='mb-4'>
+              <Card small className={`card-post card-post--1 ${styles.cardCenterItems}`}>
+                <ReactLoading type='bars' color='#007bff' />
+              </Card>
+            </Col>
+          </Row>
+        ) :
+        noPosts ?
         (
           <Row>
             <Col lg='12' md='12' sm='12' className='mb-4'>
