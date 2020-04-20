@@ -1,5 +1,3 @@
-/* eslint jsx-a11y/anchor-is-valid: 0 */
-
 import React from 'react';
 import {
     Card,
@@ -30,10 +28,10 @@ const PostsCards = (props) => {
                 >
                     {post.category_name}
                 </Badge>
-                <div className="card-post__author d-flex">
+                <div className='card-post__author d-flex'>
                     <a
-                    href="#"
-                    className="card-post__author-avatar card-post__author-avatar--small"
+                    href={`/user-profile/${post.username}`}
+                    className='card-post__author-avatar card-post__author-avatar--small'
                     style={{ backgroundImage: `url(${post.user_photo})` }}
                     >
                     </a>
@@ -41,9 +39,7 @@ const PostsCards = (props) => {
                 </div>
                 <CardBody>
                 <h5 className='card-title'>
-                    <a href='#' className='text-fiord-blue'>
-                    {post.title}
-                    </a>
+                  {post.title}
                 </h5>
                 <div className='content' dangerouslySetInnerHTML={{__html: post.description}}></div>
                 <br></br>
