@@ -75,6 +75,7 @@ class NewPost extends React.Component {
         console.log('response====>', response);
       })
       .catch(error => {
+        NotificationManager.success('Error, please try again!');
         console.log('error====>', error);
       })
   }

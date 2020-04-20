@@ -45,7 +45,7 @@ const PostsCards = (props) => {
                     {post.title}
                     </a>
                 </h5>
-                <p className='card-text d-inline-block mb-3'>{post.description}</p>
+                <div className='content' dangerouslySetInnerHTML={{__html: post.description}}></div>
                 <br></br>
                 <br></br>
                 <div className={styles.authorDiv}>
