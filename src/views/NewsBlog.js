@@ -38,7 +38,7 @@ class BlogPosts extends React.Component {
       })
       .catch(error => {
         NotificationManager.error(error.message);
-        this.setState({ noPosts: false, loading: false });
+        this.setState({ noPosts: true, loading: false });
       })
   };
 

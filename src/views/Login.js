@@ -49,9 +49,9 @@ class Login extends React.Component {
       } else {
         NotificationManager.error('Please try again');
       }
-    }).catch(error => {
+    }).catch(() => {
       this.setState({ buttonDisabled: false });
-      NotificationManager.error(error.message);
+      NotificationManager.error('Error, please try again!');
     });
   }
 

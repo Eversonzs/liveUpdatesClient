@@ -5,13 +5,14 @@ import {
     Col,
     Row,
 } from 'shards-react';
+import { Chart } from 'react-google-charts';
 
 import styles from './StatisticCard.module.css';
 
 const StatisticCard = (props) => {
   const { covidByCountry } = props;
-  const defaultCovidImage = require('../../images/covid-19-default.png');
-
+  // const defaultCovidImage = require('../../images/covid-19-default.png');
+  
   return (
     <Row>
         {covidByCountry.map((country, index) => (
@@ -19,8 +20,21 @@ const StatisticCard = (props) => {
             <Card small className='card-post card-post--1'>
                 <div
                     className='card-post__image'
-                    style={{ backgroundImage: `url(${defaultCovidImage})` }}
                 >
+                    <Chart
+                        chartType='ColumnChart'
+                        data={[
+                            ['Cases', 'Recovered', 'Deaths', 'Active'],
+                            [
+                              country.cases.total || 0,
+                              country.cases.recovered || 0,
+                              country.deaths.total || 0,
+                              country.cases.active || 0
+                            ]
+                        ]}
+                        width='100%'
+                        legendToggle
+                    />
                 </div>
                 <CardBody>
                 <h5 className='card-title'>

@@ -20,7 +20,7 @@ class CovidStatistics extends React.Component {
 
     this.state = {
       covidByCountry: [],
-      noPosts: true,
+      noData: true,
       loading: true,
     };
   }
@@ -31,21 +31,21 @@ class CovidStatistics extends React.Component {
         if (response.status === 200) {
           this.setState({
             covidByCountry: response.data.response,
-            noPosts: false,
+            noData: false,
             loading: false,
           });
         }
       })
       .catch(error => {
         NotificationManager.error(error.message);
-        this.setState({ noPosts: false, loading: false });
+        this.setState({ noData: true, loading: false });
       })
   };
 
   render() {
     const {
       covidByCountry,
-      noPosts,
+      noData,
       loading,
     } = this.state;
 
@@ -61,7 +61,7 @@ class CovidStatistics extends React.Component {
               <ReactLoading type='bars' color='#007bff' />
           </div>
         ) :
-        noPosts ?
+        noData ?
         (
           <Row>
             <Col lg='12' md='12' sm='12' className='mb-4'>
