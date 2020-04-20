@@ -5,6 +5,7 @@ import { isEmpty } from 'lodash';
 
 import PageTitle from '../components/common/PageTitle';
 import Editor from '../components/new-post/Editor';
+import CreatePost from '../services/createPost';
 
 class NewPost extends React.Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class NewPost extends React.Component {
     const {
       postTitle,
       postDescription,
+      userSession,
     } = this.state;
 
     if (isEmpty(postTitle)) {
@@ -53,12 +55,36 @@ class NewPost extends React.Component {
         NotificationManager.error('Post description can not be empty');
         return false;
     }
-    
 
+    const postData = {
+      postCategoryId: 1,
+      userId: parseInt(userSession.user_id),
+      title: postTitle,
+      description: postDescription,
+      image: '',
+    }
+    CreatePost(postData)
+      .then(response => {
+        if (response.code === 201) {
+          NotificationManager.success('Done!');
+          this.setState({
+              postTitle: '',
+              postDescription: '',
+          })
+        }
+        console.log('response====>', response);
+      })
+      .catch(error => {
+        console.log('error====>', error);
+      })
   }
 
   render() {
-    const { isButtonDisable } = this.state;
+    const {
+      isButtonDisable,
+      postTitle,
+      postDescription,
+    } = this.state;
 
     return (
       <Container fluid className='main-content-container px-4 pb-4'>
@@ -74,6 +100,8 @@ class NewPost extends React.Component {
               handleOnChange={this.handleOnChange}
               createPost={this.createPost}
               isButtonDisable={isButtonDisable}
+              postTitle={postTitle}
+              postDescription={postDescription}
             />
           </Col>
         </Row>

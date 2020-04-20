@@ -17,6 +17,8 @@ const Editor = (props) => {
       createPost,
       handleOnChange,
       isButtonDisable,
+      postTitle,
+      postDescription,
   } = props;
 
   return (
@@ -28,11 +30,13 @@ const Editor = (props) => {
               className='mb-3'
               id='postTitle'
               placeholder='Your Post Title'
+              value={postTitle || ''}
               onChange={(e) => handleOnChange(e)}
             />
             <ReactQuill
               className='add-new-post__editor mb-1'
               id='postDescription'
+              value={postDescription || ''}
               onChange={(e) => handleOnChange(e)}
             />
         </Form>
