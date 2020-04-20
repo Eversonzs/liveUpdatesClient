@@ -37,7 +37,7 @@ const StatisticCard = (props) => {
                     />
                 </div>
                 <CardBody>
-                <h5 className='card-title'>
+                <h5 className={`card-title ${styles.cardTitle}`}>
                   {country.country}
                 </h5>
                 <div className='content'>
