@@ -2,7 +2,9 @@ import React from 'react';
 import { Container, Row, Col } from 'shards-react';
 import { isEmpty } from 'lodash';
 import { NotificationManager } from 'react-notifications';
+import ReactLoading from 'react-loading';
 
+import styles from './modulesCss/UserProfileLite.module.css';
 import PageTitle from '../components/common/PageTitle';
 import UserDetails from '../components/user-profile-lite/UserDetails';
 import UserAccountDetails from '../components/user-profile-lite/UserAccountDetails';
@@ -14,6 +16,7 @@ class UserProfileLite extends React.Component {
     super(props);
     const usernameUrl = this.props.match.params.username;
     this.state = {
+      loading: true,
       userSession: {},
       userInfo: {
         username: '',
@@ -41,10 +44,11 @@ class UserProfileLite extends React.Component {
       }
       getUserByUsername(usernameUrl)
       .then(res => {
-        this.setState({ userInfo: res.userData });
+        this.setState({ userInfo: res.userData, loading: false });
       })
       .catch(error => {
         NotificationManager.error(error.message);
+        this.setState({ loading: false });
       })
       this.setState({ userSession });
     }
@@ -94,6 +98,7 @@ class UserProfileLite extends React.Component {
     const {
       userInfo,
       sameUserLoggedIn,
+      loading,
     } = this.state;
 
     return (
@@ -101,31 +106,41 @@ class UserProfileLite extends React.Component {
         <Row noGutters className='page-header py-4'>
           <PageTitle title='User Profile' subtitle='Overview' md='12' className='ml-sm-auto mr-sm-auto' />
         </Row>
-        <Row>
-          <Col lg='4'>
-            <UserDetails
-              userInfo={userInfo}
-            />
-          </Col>
-          <Col lg='8'>
-            {
-              sameUserLoggedIn ? 
-                ( 
-                  <UserAccountDetails
-                    userInfo={userInfo}
-                    userDataHandleChange={this.userDataHandleChange}
-                    buttonDisabled
-                    updateUser
-                  />
-                ) :
-                (
-                  <UserAccountDetailsRead
-                    userInfo={userInfo}
-                  />
-                )
-            }
-          </Col>
-        </Row>
+        {
+          loading ?
+          (
+            <div className={styles.divElementsCenter}>
+              <ReactLoading type='bars' color='#007bff' />
+            </div>
+          ) :
+          (
+            <Row>
+              <Col lg='4'>
+                <UserDetails
+                  userInfo={userInfo}
+                />
+              </Col>
+              <Col lg='8'>
+                {
+                  sameUserLoggedIn ? 
+                    ( 
+                      <UserAccountDetails
+                        userInfo={userInfo}
+                        userDataHandleChange={this.userDataHandleChange}
+                        buttonDisabled
+                        updateUser
+                      />
+                    ) :
+                    (
+                      <UserAccountDetailsRead
+                      userInfo={userInfo}
+                      />
+                      )
+                }
+              </Col>
+            </Row>
+          )
+        }
       </Container>
     )
   };
