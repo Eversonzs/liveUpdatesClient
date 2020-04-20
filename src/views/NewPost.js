@@ -8,7 +8,19 @@ class NewPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      postTitle: '',
+      postDescription: '',
     };
+  }
+
+  handleOnChange = (event) => {
+    if (event.target) {
+      this.setState({
+        [event.target.id]: event.target.value,
+      });
+    } else {
+      this.setState({ postDescription: event });
+    }
   }
 
   render() {
@@ -22,7 +34,9 @@ class NewPost extends React.Component {
         <Row>
           {/* Editor */}
           <Col lg='9' md='12'>
-            <Editor />
+            <Editor
+              handleOnChange={this.handleOnChange}
+            />
           </Col>
         </Row>
       </Container>
