@@ -9,6 +9,7 @@ import Login from './views/Login';
 import Register from './views/Register';
 import UserProfileLite from './views/UserProfileLite';
 import NewsBlog from './views/NewsBlog';
+import NewPost from './views/NewPost';
 import Logout from './views/Logout';
 
 export default [
@@ -37,6 +38,11 @@ export default [
     path: '/news-blog',
     layout: DefaultLayout,
     component: NewsBlog
+  },
+  {
+    path: '/new-post',
+    layout: DefaultLayout,
+    component: NewPost
   },
   {
     path: '/logout',

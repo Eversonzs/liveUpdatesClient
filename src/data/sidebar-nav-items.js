@@ -12,6 +12,11 @@ export default function() {
       to: '/news-blog',
     },
     {
+      title: 'Add New Post',
+      htmlBefore: '<i class="material-icons">note_add</i>',
+      to: '/new-post',
+    },
+    {
       title: 'Logout',
       htmlBefore: '<i class="material-icons">exit_to_app</i>',
       to: '/logout',
