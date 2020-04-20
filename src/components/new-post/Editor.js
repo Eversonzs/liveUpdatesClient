@@ -13,7 +13,11 @@ import 'react-quill/dist/quill.snow.css';
 import './Editor.css';
 
 const Editor = (props) => {
-  const { createPost, handleOnChange } = props;
+  const {
+      createPost,
+      handleOnChange,
+      isButtonDisable,
+  } = props;
 
   return (
     <Card small className='mb-3'>
@@ -37,6 +41,7 @@ const Editor = (props) => {
         <Button
           onClick={() => createPost()}
           className='ml-auto'
+          disabled={isButtonDisable}
         >
           Send
         </Button>
