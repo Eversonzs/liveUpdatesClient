@@ -18,6 +18,7 @@ class NewPost extends React.Component {
       postTitle: '',
       postDescription: '',
       category: 0,
+      image: '',
       userSession: {},
       isButtonDisable: true,
       postCategories: [],
@@ -33,6 +34,19 @@ class NewPost extends React.Component {
         categories = postCategories.categories;
     }
     this.setState({ loading: false, postCategories: categories });
+  }
+
+  handleImageOnChange = (event) => {
+    const userDataKey = event.target.id;
+    if (userDataKey === 'image') {
+      const photo = event.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(photo);
+      reader.onloadend = () => {
+          const imageB64 = reader.result;
+          this.setState({ image: imageB64 });
+      };
+    }
   }
 
   handleOnChange = (event) => {
@@ -119,13 +133,14 @@ class NewPost extends React.Component {
             <Row>
             <Col lg='9' md='12'>
                 <Editor
-                handleOnChange={this.handleOnChange}
-                createPost={this.createPost}
-                isButtonDisable={isButtonDisable}
-                postTitle={postTitle}
-                postDescription={postDescription}
-                postCategories={postCategories}
-                category={category}
+                    handleOnChange={this.handleOnChange}
+                    createPost={this.createPost}
+                    isButtonDisable={isButtonDisable}
+                    postTitle={postTitle}
+                    postDescription={postDescription}
+                    postCategories={postCategories}
+                    category={category}
+                    handleImageOnChange={this.handleImageOnChange}
                 />
             </Col>
             </Row>

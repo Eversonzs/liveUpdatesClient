@@ -8,6 +8,7 @@ import {
     Row,
     Button,
     FormSelect,
+    FormGroup,
 } from 'shards-react';
 
 import 'react-quill/dist/quill.snow.css';
@@ -21,7 +22,8 @@ const Editor = (props) => {
       postTitle,
       postDescription,
       postCategories,
-      category
+      category,
+      handleImageOnChange,
   } = props;
 
   return (
@@ -58,6 +60,17 @@ const Editor = (props) => {
               value={postDescription || ''}
               onChange={(e) => handleOnChange(e)}
             />
+            <FormGroup>
+                <label htmlFor='image'>Select an image for your post</label>
+                <FormInput
+                    type='file'
+                    accept='image/png, image/jpeg, image/jpg'
+                    id='image'
+                    placeholder='Select an image...'
+                    onChange={(e) => handleImageOnChange(e)}
+                    autoComplete='image'
+                />
+            </FormGroup>
         </Form>
       </CardBody>
       <Row className='col float-right'>
