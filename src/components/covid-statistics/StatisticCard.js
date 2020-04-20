@@ -12,8 +12,6 @@ const StatisticCard = (props) => {
   const { covidByCountry } = props;
   const defaultCovidImage = require('../../images/covid-19-default.png');
 
-  console.log('covidByCountry-->>', covidByCountry);
-
   return (
     <Row>
         {covidByCountry.map((country, index) => (
@@ -29,7 +27,22 @@ const StatisticCard = (props) => {
                   {country.country}
                 </h5>
                 <div className='content'>
-                    
+                    <Row>
+                        <Col xs='5'><strong>Cases: </strong></Col>
+                        <Col>{country.cases.total || 'No data'}</Col>
+                    </Row>
+                    <Row>
+                        <Col xs='5'><strong>Active: </strong></Col>
+                        <Col>{country.cases.active || 'No data'}</Col>
+                    </Row>
+                    <Row>
+                        <Col xs='5'><strong>Recovered: </strong></Col>
+                        <Col>{country.cases.recovered || 'No data'}</Col>
+                    </Row>
+                    <Row>
+                        <Col xs='5'><strong>Deaths: </strong></Col>
+                        <Col>{country.deaths.total || 'No data'}</Col>
+                    </Row>
                 </div>
                 <br></br>
                 <div className={styles.authorDiv}>
