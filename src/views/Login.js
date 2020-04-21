@@ -72,6 +72,11 @@ class Login extends React.Component {
             <ListGroup flush className={styles.loginBox}>
               <ListGroupItem>
                 <Row className={styles.rowCenter}>
+                  <img
+                    src={require('../images/liveUpdatesLogo.png')}
+                    alt='live-updates-logo'
+                    className={styles.logo}
+                  ></img>
                   <LoginForm
                     login={this.login}
                     inputsHandleChange={this.inputsHandleChange}
