@@ -13,4 +13,9 @@
 .rowCenter {
     margin-left: 15px !important;
     margin-right: 15px !important;
+    place-content: center;
+}
+
+.logo {
+    max-width: 80px;
 }
