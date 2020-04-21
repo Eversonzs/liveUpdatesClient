@@ -122,7 +122,7 @@ class UserProfileLite extends React.Component {
               </Col>
               <Col lg='8'>
                 {
-                  sameUserLoggedIn ? 
+                  sameUserLoggedIn ?
                     ( 
                       <UserAccountDetails
                         userInfo={userInfo}
@@ -135,7 +135,7 @@ class UserProfileLite extends React.Component {
                       <UserAccountDetailsRead
                       userInfo={userInfo}
                       />
-                      )
+                    )
                 }
               </Col>
             </Row>
