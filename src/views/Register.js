@@ -151,6 +151,11 @@ class Register extends React.Component {
               <ListGroup flush className={styles.registerBox}>
                 <ListGroupItem>
                   <Row className={styles.rowCenter}>
+                    <img
+                      src={require('../images/liveUpdatesLogo.png')}
+                      alt='live-updates-logo'
+                      className={styles.logo}
+                    ></img>
                     <RegisterForm
                       buttonDisabled={buttonDisabled}
                       userDataHandleChange={this.userDataHandleChange}
