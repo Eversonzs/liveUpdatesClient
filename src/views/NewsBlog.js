@@ -5,6 +5,7 @@ import {
   Col,
   Card,
   CardBody,
+  FormSelect,
 } from 'shards-react';
 import { NotificationManager } from 'react-notifications';
 import ReactLoading from 'react-loading';
@@ -12,7 +13,9 @@ import ReactLoading from 'react-loading';
 import styles from './modulesCss/NewsBlog.module.css';
 import PageTitle from '../components/common/PageTitle';
 import PostsCards from '../components/news-blog/PostsCards';
-import getAllPosts from '../services/getAllPosts';
+import GetAllPosts from '../services/getAllPosts';
+import GetPostCategories from '../services/getPostCategories';
+import GetPostsByCategory from '../services/getPostsByCategory';
 
 class BlogPosts extends React.Component {
   constructor(props) {
@@ -22,31 +25,70 @@ class BlogPosts extends React.Component {
       allPosts: [],
       noPosts: true,
       loading: true,
+      category: 0,
+      postCategories: [],
     };
   }
 
-  componentDidMount = () => {
-    getAllPosts()
+  componentDidMount = async () => {
+    const postCategories = await GetPostCategories();
+    let categories = [{ post_category_id: 0, name: 'There is not categories'}];
+    if (postCategories.code === 200) {
+        categories = postCategories.categories;
+    }
+
+    GetAllPosts()
       .then(response => {
         if (response.code === 200) {
           this.setState({
             allPosts: response.posts,
             noPosts: false,
             loading: false,
+            postCategories: categories,
           });
         }
       })
       .catch(error => {
         NotificationManager.error(error.message);
-        this.setState({ noPosts: false, loading: false });
+        this.setState({ noPosts: true, loading: false });
       })
   };
+
+  handleOnChange = (event) => {
+    if (event.target) {
+      const categoryId = event.target.value
+      this.setState({
+        [event.target.id]: categoryId,
+        loading: true,
+      });
+      
+      GetPostsByCategory(parseInt(categoryId))
+        .then(response => {
+          if (response.code === 200) {
+            this.setState({
+              allPosts: response.posts,
+              noPosts: false,
+              loading: false,
+            });
+          }
+        })
+        .catch(error => {
+          NotificationManager.error(error.message);
+          this.setState({
+            loading: false,
+            noPosts: true,
+          })
+        })
+    }
+  }
 
   render() {
     const {
       allPosts,
       noPosts,
       loading,
+      category,
+      postCategories,
     } = this.state;
 
     return (
@@ -55,6 +97,21 @@ class BlogPosts extends React.Component {
           <Row noGutters className='page-header py-4'>
             <PageTitle sm='4' title='News Blog' className='text-sm-left' />
           </Row>
+          <FormSelect
+              className='categories-form-select'
+              id='category'
+              onChange={(e) => this.handleOnChange(e)}
+              value={category}
+            >
+              <option value='0' key='0' defaultValue hidden>Select a category.</option>
+              {
+                postCategories.map(category => (
+                  <option value={category.post_category_id} key={category.post_category_id}>
+                    {category.name}
+                  </option>
+                ))
+              }
+            </FormSelect>
       { loading ?
         (
           <div className={styles.divElementsCenter}>
