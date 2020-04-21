@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 ## Update
+## [0.1.5] - 2020-04-20
+* Get and show posts by category.
+* Readme updated.
+## Update
 ## [0.1.4] - 2020-04-20
 * View for COVID-19 statistics with charts.
 ## Update

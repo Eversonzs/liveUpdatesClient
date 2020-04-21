@@ -3,6 +3,54 @@ Repository for FrontEnd application for developer challenge about live updates.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Contents
+1. [Prerequisites](#Prerequisites)
+2. [Current Version](#CurrentVersion)
+4. [Installation on local environment](#Installation)
+    1. [Add local environment variables](#LocalEnvVariables)
+    2. [Run Application](#RunApp)
+
+## Prerequisites
+
+- [LiveUpdatesClient](https://github.com/Eversonzs/liveUpdatesClient)
+- [NodeJs v12.14.1 or higher](https://nodejs.org/en/)
+- [npm v6.13.4 or higher](https://www.npmjs.com/)
+
+## CurrentVersion
+
+    version: 0.1.5
+
+## Installation
+
+- Git clone this project
+
+```
+git clone git@github.com:Eversonzs/liveUpdatesClient.git
+```
+
+## LocalEnvVariables
+
+- On the root folder create a .env file for environment variables.
+
+```
+REACT_APP_BASENAME = live-updates-client
+REACT_APP_LIVE_UPDATES_SERVER = { server url }
+REACT_APP_SERVER_USERNAME = { username to connect to the server }
+REACT_APP_SERVER_PASSWORD = { password to connect to the server }
+REACT_APP_RAPIDAPI_KEY = { API key to connect with rapidAPI server }
+REACT_APP_RAPIDAPI_HOST = { RapidApi url to connect }
+```
+
+## RunApp
+Then run this commands on your bash
+
+```
+npm install
+npm start
+```
+
+Open http://localhost:3000 to view it in the browser.
+
 ## Available Scripts
 
 In the project directory, you can run:
