@@ -11,7 +11,6 @@ import styles from './StatisticCard.module.css';
 
 const StatisticCard = (props) => {
   const { covidByCountry } = props;
-  // const defaultCovidImage = require('../../images/covid-19-default.png');
   
   return (
     <Row>
@@ -40,7 +39,7 @@ const StatisticCard = (props) => {
                 <h5 className={`card-title ${styles.cardTitle}`}>
                   {country.country}
                 </h5>
-                <div className='content'>
+                <div className={`content ${styles.dataCard}`}>
                     <Row>
                         <Col xs='5'><strong>Cases: </strong></Col>
                         <Col>{country.cases.total || 'No data'}</Col>
@@ -56,6 +55,14 @@ const StatisticCard = (props) => {
                     <Row>
                         <Col xs='5'><strong>Deaths: </strong></Col>
                         <Col>{country.deaths.total || 'No data'}</Col>
+                    </Row>
+                    <Row>
+                        <Col xs='5'><strong>Mortality rate: </strong></Col>
+                        <Col>{(country.deaths.total/country.cases.total * 100).toFixed(2) || 'No data'}%</Col>
+                    </Row>
+                    <Row>
+                        <Col xs='5'><strong>Recovered rate: </strong></Col>
+                        <Col>{(country.cases.recovered/country.cases.total * 100).toFixed(2) || 'No data'}%</Col>
                     </Row>
                 </div>
                 <br></br>
