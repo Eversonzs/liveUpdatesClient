@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 ## Update
+## [1.0.0] - 2020-04-20
+* First version to deploy.
+* Logo and favicon added.
+## Update
 ## [0.1.5] - 2020-04-20
 * Get and show posts by category.
 * Readme updated.
